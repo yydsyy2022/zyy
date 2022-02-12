@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproDoctorMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproDoctor">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="doctorName" column="DOCTOR_NAME" jdbcType="VARCHAR"/>
+            <result property="doctorType" column="DOCTOR_TYPE" jdbcType="VARCHAR"/>
+            <result property="doctorTitle" column="DOCTOR_TITLE" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="DEPT_CODE" jdbcType="VARCHAR"/>
+            <result property="hospCode" column="HOSP_CODE" jdbcType="VARCHAR"/>
+            <result property="visitTime" column="VISIT_TIME" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="doctorIntroduce" column="DOCTOR_INTRODUCE" jdbcType="VARCHAR"/>
+            <result property="medicineRecords" column="MEDICINE_RECORDS" jdbcType="VARCHAR"/>
+            <result property="mainVisit" column="MAIN_VISIT" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,DOCTOR_NAME,
+        DOCTOR_TYPE,DOCTOR_TITLE,DEPT_CODE,
+        HOSP_CODE,VISIT_TIME,PHONE,
+        DOCTOR_INTRODUCE,MEDICINE_RECORDS,MAIN_VISIT,
+        STATUS,CREATER,itemCreateAt,
+        UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_doctor
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_doctor
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproDoctor" useGeneratedKeys="true">
+        insert into tb_culpro_doctor
+        ( itemID,itemCode,DOCTOR_NAME
+        ,DOCTOR_TYPE,DOCTOR_TITLE,DEPT_CODE
+        ,HOSP_CODE,VISIT_TIME,PHONE
+        ,DOCTOR_INTRODUCE,MEDICINE_RECORDS,MAIN_VISIT
+        ,STATUS,CREATER,itemCreateAt
+        ,UPDATER,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{doctorName,jdbcType=VARCHAR}
+        ,#{doctorType,jdbcType=VARCHAR},#{doctorTitle,jdbcType=VARCHAR},#{deptCode,jdbcType=VARCHAR}
+        ,#{hospCode,jdbcType=VARCHAR},#{visitTime,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
+        ,#{doctorIntroduce,jdbcType=VARCHAR},#{medicineRecords,jdbcType=VARCHAR},#{mainVisit,jdbcType=VARCHAR}
+        ,#{status,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP}
+        ,#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproDoctor" useGeneratedKeys="true">
+        insert into tb_culpro_doctor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="doctorName != null">DOCTOR_NAME,</if>
+                <if test="doctorType != null">DOCTOR_TYPE,</if>
+                <if test="doctorTitle != null">DOCTOR_TITLE,</if>
+                <if test="deptCode != null">DEPT_CODE,</if>
+                <if test="hospCode != null">HOSP_CODE,</if>
+                <if test="visitTime != null">VISIT_TIME,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="doctorIntroduce != null">DOCTOR_INTRODUCE,</if>
+                <if test="medicineRecords != null">MEDICINE_RECORDS,</if>
+                <if test="mainVisit != null">MAIN_VISIT,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="doctorName != null"> #{doctorName,jdbcType=VARCHAR},</if>
+                <if test="doctorType != null"> #{doctorType,jdbcType=VARCHAR},</if>
+                <if test="doctorTitle != null"> #{doctorTitle,jdbcType=VARCHAR},</if>
+                <if test="deptCode != null"> #{deptCode,jdbcType=VARCHAR},</if>
+                <if test="hospCode != null"> #{hospCode,jdbcType=VARCHAR},</if>
+                <if test="visitTime != null"> #{visitTime,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="doctorIntroduce != null"> #{doctorIntroduce,jdbcType=VARCHAR},</if>
+                <if test="medicineRecords != null"> #{medicineRecords,jdbcType=VARCHAR},</if>
+                <if test="mainVisit != null"> #{mainVisit,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproDoctor">
+        update tb_culpro_doctor
+        <set>
+                <if test="doctorName != null">
+                    DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+                </if>
+                <if test="doctorType != null">
+                    DOCTOR_TYPE = #{doctorType,jdbcType=VARCHAR},
+                </if>
+                <if test="doctorTitle != null">
+                    DOCTOR_TITLE = #{doctorTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="deptCode != null">
+                    DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+                </if>
+                <if test="hospCode != null">
+                    HOSP_CODE = #{hospCode,jdbcType=VARCHAR},
+                </if>
+                <if test="visitTime != null">
+                    VISIT_TIME = #{visitTime,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="doctorIntroduce != null">
+                    DOCTOR_INTRODUCE = #{doctorIntroduce,jdbcType=VARCHAR},
+                </if>
+                <if test="medicineRecords != null">
+                    MEDICINE_RECORDS = #{medicineRecords,jdbcType=VARCHAR},
+                </if>
+                <if test="mainVisit != null">
+                    MAIN_VISIT = #{mainVisit,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproDoctor">
+        update tb_culpro_doctor
+        set 
+            DOCTOR_NAME =  #{doctorName,jdbcType=VARCHAR},
+            DOCTOR_TYPE =  #{doctorType,jdbcType=VARCHAR},
+            DOCTOR_TITLE =  #{doctorTitle,jdbcType=VARCHAR},
+            DEPT_CODE =  #{deptCode,jdbcType=VARCHAR},
+            HOSP_CODE =  #{hospCode,jdbcType=VARCHAR},
+            VISIT_TIME =  #{visitTime,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            DOCTOR_INTRODUCE =  #{doctorIntroduce,jdbcType=VARCHAR},
+            MEDICINE_RECORDS =  #{medicineRecords,jdbcType=VARCHAR},
+            MAIN_VISIT =  #{mainVisit,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

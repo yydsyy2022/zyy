@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.OrganizationMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.Organization">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <result property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+            <result property="orgDescription" column="ORG_DESCRIPTION" jdbcType="VARCHAR"/>
+            <result property="orgIdentify" column="ORG_IDENTIFY" jdbcType="VARCHAR"/>
+            <result property="orgLocate" column="ORG_LOCATE" jdbcType="VARCHAR"/>
+            <result property="auditStatus" column="AUDIT_STATUS" jdbcType="VARCHAR"/>
+            <result property="left" column="LEFT" jdbcType="INTEGER"/>
+            <result property="right" column="RIGHT" jdbcType="INTEGER"/>
+            <result property="level" column="LEVEL" jdbcType="INTEGER"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,ORG_NAME,
+        ORG_CODE,ORG_DESCRIPTION,ORG_IDENTIFY,
+        ORG_LOCATE,AUDIT_STATUS,LEFT,
+        RIGHT,LEVEL,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from organization
+        where  itemID = #{itemid,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from organization
+        where  itemID = #{itemid,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.Organization" useGeneratedKeys="true">
+        insert into organization
+        ( itemID,itemCode,ORG_NAME
+        ,ORG_CODE,ORG_DESCRIPTION,ORG_IDENTIFY
+        ,ORG_LOCATE,AUDIT_STATUS,LEFT
+        ,RIGHT,LEVEL,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{orgName,jdbcType=VARCHAR}
+        ,#{orgCode,jdbcType=VARCHAR},#{orgDescription,jdbcType=VARCHAR},#{orgIdentify,jdbcType=VARCHAR}
+        ,#{orgLocate,jdbcType=VARCHAR},#{auditStatus,jdbcType=VARCHAR},#{left,jdbcType=INTEGER}
+        ,#{right,jdbcType=INTEGER},#{level,jdbcType=INTEGER},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.Organization" useGeneratedKeys="true">
+        insert into organization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="orgName != null">ORG_NAME,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="orgDescription != null">ORG_DESCRIPTION,</if>
+                <if test="orgIdentify != null">ORG_IDENTIFY,</if>
+                <if test="orgLocate != null">ORG_LOCATE,</if>
+                <if test="auditStatus != null">AUDIT_STATUS,</if>
+                <if test="left != null">LEFT,</if>
+                <if test="right != null">RIGHT,</if>
+                <if test="level != null">LEVEL,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="orgName != null"> #{orgName,jdbcType=VARCHAR},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=VARCHAR},</if>
+                <if test="orgDescription != null"> #{orgDescription,jdbcType=VARCHAR},</if>
+                <if test="orgIdentify != null"> #{orgIdentify,jdbcType=VARCHAR},</if>
+                <if test="orgLocate != null"> #{orgLocate,jdbcType=VARCHAR},</if>
+                <if test="auditStatus != null"> #{auditStatus,jdbcType=VARCHAR},</if>
+                <if test="left != null"> #{left,jdbcType=INTEGER},</if>
+                <if test="right != null"> #{right,jdbcType=INTEGER},</if>
+                <if test="level != null"> #{level,jdbcType=INTEGER},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.Organization">
+        update organization
+        <set>
+                <if test="itemcode != null">
+                    itemCode = #{itemcode,jdbcType=CHAR},
+                </if>
+                <if test="orgName != null">
+                    ORG_NAME = #{orgName,jdbcType=VARCHAR},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+                </if>
+                <if test="orgDescription != null">
+                    ORG_DESCRIPTION = #{orgDescription,jdbcType=VARCHAR},
+                </if>
+                <if test="orgIdentify != null">
+                    ORG_IDENTIFY = #{orgIdentify,jdbcType=VARCHAR},
+                </if>
+                <if test="orgLocate != null">
+                    ORG_LOCATE = #{orgLocate,jdbcType=VARCHAR},
+                </if>
+                <if test="auditStatus != null">
+                    AUDIT_STATUS = #{auditStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="left != null">
+                    LEFT = #{left,jdbcType=INTEGER},
+                </if>
+                <if test="right != null">
+                    RIGHT = #{right,jdbcType=INTEGER},
+                </if>
+                <if test="level != null">
+                    LEVEL = #{level,jdbcType=INTEGER},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.Organization">
+        update organization
+        set 
+            itemCode =  #{itemcode,jdbcType=CHAR},
+            ORG_NAME =  #{orgName,jdbcType=VARCHAR},
+            ORG_CODE =  #{orgCode,jdbcType=VARCHAR},
+            ORG_DESCRIPTION =  #{orgDescription,jdbcType=VARCHAR},
+            ORG_IDENTIFY =  #{orgIdentify,jdbcType=VARCHAR},
+            ORG_LOCATE =  #{orgLocate,jdbcType=VARCHAR},
+            AUDIT_STATUS =  #{auditStatus,jdbcType=VARCHAR},
+            LEFT =  #{left,jdbcType=INTEGER},
+            RIGHT =  #{right,jdbcType=INTEGER},
+            LEVEL =  #{level,jdbcType=INTEGER},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} 
+    </update>
+</mapper>

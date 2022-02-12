@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproSpecialtyMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproSpecialty">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="specialtyName" column="SPECIALTY_NAME" jdbcType="VARCHAR"/>
+            <result property="specialtyLevel" column="SPECIALTY_LEVEL" jdbcType="VARCHAR"/>
+            <result property="specialtyDisease" column="SPECIALTY_DISEASE" jdbcType="VARCHAR"/>
+            <result property="specialtyBriefIntroduce" column="SPECIALTY_BRIEF_INTRODUCE" jdbcType="VARCHAR"/>
+            <result property="specialtyIntroduce" column="SPECIALTY_INTRODUCE" jdbcType="VARCHAR"/>
+            <result property="specialtyPhone" column="SPECIALTY_PHONE" jdbcType="VARCHAR"/>
+            <result property="specialtyAddressPro" column="SPECIALTY_ADDRESS_PRO" jdbcType="VARCHAR"/>
+            <result property="specialtyAddressCity" column="SPECIALTY_ADDRESS_CITY" jdbcType="VARCHAR"/>
+            <result property="specialtyAddressCounty" column="SPECIALTY_ADDRESS_COUNTY" jdbcType="VARCHAR"/>
+            <result property="specialtyAddress" column="SPECIALTY_ADDRESS" jdbcType="VARCHAR"/>
+            <result property="specialtyLink" column="SPECIALTY_LINK" jdbcType="VARCHAR"/>
+            <result property="specialtyStatus" column="SPECIALTY_STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,SPECIALTY_NAME,
+        SPECIALTY_LEVEL,SPECIALTY_DISEASE,SPECIALTY_BRIEF_INTRODUCE,
+        SPECIALTY_INTRODUCE,SPECIALTY_PHONE,SPECIALTY_ADDRESS_PRO,
+        SPECIALTY_ADDRESS_CITY,SPECIALTY_ADDRESS_COUNTY,SPECIALTY_ADDRESS,
+        SPECIALTY_LINK,SPECIALTY_STATUS,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_specialty
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_specialty
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproSpecialty" useGeneratedKeys="true">
+        insert into tb_culpro_specialty
+        ( itemID,itemCode,SPECIALTY_NAME
+        ,SPECIALTY_LEVEL,SPECIALTY_DISEASE,SPECIALTY_BRIEF_INTRODUCE
+        ,SPECIALTY_INTRODUCE,SPECIALTY_PHONE,SPECIALTY_ADDRESS_PRO
+        ,SPECIALTY_ADDRESS_CITY,SPECIALTY_ADDRESS_COUNTY,SPECIALTY_ADDRESS
+        ,SPECIALTY_LINK,SPECIALTY_STATUS,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{specialtyName,jdbcType=VARCHAR}
+        ,#{specialtyLevel,jdbcType=VARCHAR},#{specialtyDisease,jdbcType=VARCHAR},#{specialtyBriefIntroduce,jdbcType=VARCHAR}
+        ,#{specialtyIntroduce,jdbcType=VARCHAR},#{specialtyPhone,jdbcType=VARCHAR},#{specialtyAddressPro,jdbcType=VARCHAR}
+        ,#{specialtyAddressCity,jdbcType=VARCHAR},#{specialtyAddressCounty,jdbcType=VARCHAR},#{specialtyAddress,jdbcType=VARCHAR}
+        ,#{specialtyLink,jdbcType=VARCHAR},#{specialtyStatus,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproSpecialty" useGeneratedKeys="true">
+        insert into tb_culpro_specialty
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="specialtyName != null">SPECIALTY_NAME,</if>
+                <if test="specialtyLevel != null">SPECIALTY_LEVEL,</if>
+                <if test="specialtyDisease != null">SPECIALTY_DISEASE,</if>
+                <if test="specialtyBriefIntroduce != null">SPECIALTY_BRIEF_INTRODUCE,</if>
+                <if test="specialtyIntroduce != null">SPECIALTY_INTRODUCE,</if>
+                <if test="specialtyPhone != null">SPECIALTY_PHONE,</if>
+                <if test="specialtyAddressPro != null">SPECIALTY_ADDRESS_PRO,</if>
+                <if test="specialtyAddressCity != null">SPECIALTY_ADDRESS_CITY,</if>
+                <if test="specialtyAddressCounty != null">SPECIALTY_ADDRESS_COUNTY,</if>
+                <if test="specialtyAddress != null">SPECIALTY_ADDRESS,</if>
+                <if test="specialtyLink != null">SPECIALTY_LINK,</if>
+                <if test="specialtyStatus != null">SPECIALTY_STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="specialtyName != null"> #{specialtyName,jdbcType=VARCHAR},</if>
+                <if test="specialtyLevel != null"> #{specialtyLevel,jdbcType=VARCHAR},</if>
+                <if test="specialtyDisease != null"> #{specialtyDisease,jdbcType=VARCHAR},</if>
+                <if test="specialtyBriefIntroduce != null"> #{specialtyBriefIntroduce,jdbcType=VARCHAR},</if>
+                <if test="specialtyIntroduce != null"> #{specialtyIntroduce,jdbcType=VARCHAR},</if>
+                <if test="specialtyPhone != null"> #{specialtyPhone,jdbcType=VARCHAR},</if>
+                <if test="specialtyAddressPro != null"> #{specialtyAddressPro,jdbcType=VARCHAR},</if>
+                <if test="specialtyAddressCity != null"> #{specialtyAddressCity,jdbcType=VARCHAR},</if>
+                <if test="specialtyAddressCounty != null"> #{specialtyAddressCounty,jdbcType=VARCHAR},</if>
+                <if test="specialtyAddress != null"> #{specialtyAddress,jdbcType=VARCHAR},</if>
+                <if test="specialtyLink != null"> #{specialtyLink,jdbcType=VARCHAR},</if>
+                <if test="specialtyStatus != null"> #{specialtyStatus,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproSpecialty">
+        update tb_culpro_specialty
+        <set>
+                <if test="specialtyName != null">
+                    SPECIALTY_NAME = #{specialtyName,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyLevel != null">
+                    SPECIALTY_LEVEL = #{specialtyLevel,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyDisease != null">
+                    SPECIALTY_DISEASE = #{specialtyDisease,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyBriefIntroduce != null">
+                    SPECIALTY_BRIEF_INTRODUCE = #{specialtyBriefIntroduce,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyIntroduce != null">
+                    SPECIALTY_INTRODUCE = #{specialtyIntroduce,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyPhone != null">
+                    SPECIALTY_PHONE = #{specialtyPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyAddressPro != null">
+                    SPECIALTY_ADDRESS_PRO = #{specialtyAddressPro,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyAddressCity != null">
+                    SPECIALTY_ADDRESS_CITY = #{specialtyAddressCity,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyAddressCounty != null">
+                    SPECIALTY_ADDRESS_COUNTY = #{specialtyAddressCounty,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyAddress != null">
+                    SPECIALTY_ADDRESS = #{specialtyAddress,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyLink != null">
+                    SPECIALTY_LINK = #{specialtyLink,jdbcType=VARCHAR},
+                </if>
+                <if test="specialtyStatus != null">
+                    SPECIALTY_STATUS = #{specialtyStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproSpecialty">
+        update tb_culpro_specialty
+        set 
+            SPECIALTY_NAME =  #{specialtyName,jdbcType=VARCHAR},
+            SPECIALTY_LEVEL =  #{specialtyLevel,jdbcType=VARCHAR},
+            SPECIALTY_DISEASE =  #{specialtyDisease,jdbcType=VARCHAR},
+            SPECIALTY_BRIEF_INTRODUCE =  #{specialtyBriefIntroduce,jdbcType=VARCHAR},
+            SPECIALTY_INTRODUCE =  #{specialtyIntroduce,jdbcType=VARCHAR},
+            SPECIALTY_PHONE =  #{specialtyPhone,jdbcType=VARCHAR},
+            SPECIALTY_ADDRESS_PRO =  #{specialtyAddressPro,jdbcType=VARCHAR},
+            SPECIALTY_ADDRESS_CITY =  #{specialtyAddressCity,jdbcType=VARCHAR},
+            SPECIALTY_ADDRESS_COUNTY =  #{specialtyAddressCounty,jdbcType=VARCHAR},
+            SPECIALTY_ADDRESS =  #{specialtyAddress,jdbcType=VARCHAR},
+            SPECIALTY_LINK =  #{specialtyLink,jdbcType=VARCHAR},
+            SPECIALTY_STATUS =  #{specialtyStatus,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

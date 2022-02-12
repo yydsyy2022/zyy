@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.IndustrialDevelopMedMatMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.IndustrialDevelopMedMat">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="specifications" column="SPECIFICATIONS" jdbcType="VARCHAR"/>
+            <result property="price" column="PRICE" jdbcType="VARCHAR"/>
+            <result property="place" column="PLACE" jdbcType="VARCHAR"/>
+            <result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,NAME,
+        SPECIFICATIONS,PRICE,PLACE,
+        CONTACTS,PHONE,STATUS,
+        ORG_CODE,CREATER,itemCreateAt,
+        UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_med_mat
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_industrial_develop_med_mat
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
+        insert into tb_industrial_develop_med_mat
+        ( itemID,itemCode,NAME
+        ,SPECIFICATIONS,PRICE,PLACE
+        ,CONTACTS,PHONE,STATUS
+        ,ORG_CODE,CREATER,itemCreateAt
+        ,UPDATER,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{name,jdbcType=VARCHAR}
+        ,#{specifications,jdbcType=VARCHAR},#{price,jdbcType=VARCHAR},#{place,jdbcType=VARCHAR}
+        ,#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{orgCode,jdbcType=CHAR},#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP}
+        ,#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
+        insert into tb_industrial_develop_med_mat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="name != null">NAME,</if>
+                <if test="specifications != null">SPECIFICATIONS,</if>
+                <if test="price != null">PRICE,</if>
+                <if test="place != null">PLACE,</if>
+                <if test="contacts != null">CONTACTS,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="name != null"> #{name,jdbcType=VARCHAR},</if>
+                <if test="specifications != null"> #{specifications,jdbcType=VARCHAR},</if>
+                <if test="price != null"> #{price,jdbcType=VARCHAR},</if>
+                <if test="place != null"> #{place,jdbcType=VARCHAR},</if>
+                <if test="contacts != null"> #{contacts,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=CHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat">
+        update tb_industrial_develop_med_mat
+        <set>
+                <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="specifications != null">
+                    SPECIFICATIONS = #{specifications,jdbcType=VARCHAR},
+                </if>
+                <if test="price != null">
+                    PRICE = #{price,jdbcType=VARCHAR},
+                </if>
+                <if test="place != null">
+                    PLACE = #{place,jdbcType=VARCHAR},
+                </if>
+                <if test="contacts != null">
+                    CONTACTS = #{contacts,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=CHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat">
+        update tb_industrial_develop_med_mat
+        set 
+            NAME =  #{name,jdbcType=VARCHAR},
+            SPECIFICATIONS =  #{specifications,jdbcType=VARCHAR},
+            PRICE =  #{price,jdbcType=VARCHAR},
+            PLACE =  #{place,jdbcType=VARCHAR},
+            CONTACTS =  #{contacts,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            ORG_CODE =  #{orgCode,jdbcType=CHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

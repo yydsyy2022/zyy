@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproFamProMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproFamPro">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="source" column="SOURCE" jdbcType="VARCHAR"/>
+            <result property="author" column="AUTHOR" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,NAME,
+        SOURCE,AUTHOR,VISIT_NUM,
+        CONTENT,STATUS,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_fam_pro
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_fam_pro
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproFamPro" useGeneratedKeys="true">
+        insert into tb_culpro_fam_pro
+        ( itemID,itemCode,NAME
+        ,SOURCE,AUTHOR,VISIT_NUM
+        ,CONTENT,STATUS,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{name,jdbcType=VARCHAR}
+        ,#{source,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR},#{visitNum,jdbcType=INTEGER}
+        ,#{content,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproFamPro" useGeneratedKeys="true">
+        insert into tb_culpro_fam_pro
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="name != null">NAME,</if>
+                <if test="source != null">SOURCE,</if>
+                <if test="author != null">AUTHOR,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="content != null">CONTENT,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="name != null"> #{name,jdbcType=VARCHAR},</if>
+                <if test="source != null"> #{source,jdbcType=VARCHAR},</if>
+                <if test="author != null"> #{author,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="content != null"> #{content,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproFamPro">
+        update tb_culpro_fam_pro
+        <set>
+                <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="source != null">
+                    SOURCE = #{source,jdbcType=VARCHAR},
+                </if>
+                <if test="author != null">
+                    AUTHOR = #{author,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="content != null">
+                    CONTENT = #{content,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproFamPro">
+        update tb_culpro_fam_pro
+        set 
+            NAME =  #{name,jdbcType=VARCHAR},
+            SOURCE =  #{source,jdbcType=VARCHAR},
+            AUTHOR =  #{author,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            CONTENT =  #{content,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

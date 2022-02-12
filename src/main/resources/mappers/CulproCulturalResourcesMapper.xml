@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproCulturalResourcesMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproCulturalResources">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="chineseCulturalName" column="CHINESE_CULTURAL_NAME" jdbcType="VARCHAR"/>
+            <result property="chineseCulturalContent" column="CHINESE_CULTURAL_CONTENT" jdbcType="VARCHAR"/>
+            <result property="chineseCulturalSource" column="CHINESE_CULTURAL_SOURCE" jdbcType="VARCHAR"/>
+            <result property="chineseCulturalAuthor" column="CHINESE_CULTURAL_AUTHOR" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="chineseCulturalType" column="CHINESE_CULTURAL_TYPE" jdbcType="VARCHAR"/>
+            <result property="chineseCulturalStatus" column="CHINESE_CULTURAL_STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,CHINESE_CULTURAL_NAME,
+        CHINESE_CULTURAL_CONTENT,CHINESE_CULTURAL_SOURCE,CHINESE_CULTURAL_AUTHOR,
+        VISIT_NUM,CHINESE_CULTURAL_TYPE,CHINESE_CULTURAL_STATUS,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_cultural_resources
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_cultural_resources
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproCulturalResources" useGeneratedKeys="true">
+        insert into tb_culpro_cultural_resources
+        ( itemID,itemCode,CHINESE_CULTURAL_NAME
+        ,CHINESE_CULTURAL_CONTENT,CHINESE_CULTURAL_SOURCE,CHINESE_CULTURAL_AUTHOR
+        ,VISIT_NUM,CHINESE_CULTURAL_TYPE,CHINESE_CULTURAL_STATUS
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{chineseCulturalName,jdbcType=VARCHAR}
+        ,#{chineseCulturalContent,jdbcType=VARCHAR},#{chineseCulturalSource,jdbcType=VARCHAR},#{chineseCulturalAuthor,jdbcType=VARCHAR}
+        ,#{visitNum,jdbcType=INTEGER},#{chineseCulturalType,jdbcType=VARCHAR},#{chineseCulturalStatus,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproCulturalResources" useGeneratedKeys="true">
+        insert into tb_culpro_cultural_resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="chineseCulturalName != null">CHINESE_CULTURAL_NAME,</if>
+                <if test="chineseCulturalContent != null">CHINESE_CULTURAL_CONTENT,</if>
+                <if test="chineseCulturalSource != null">CHINESE_CULTURAL_SOURCE,</if>
+                <if test="chineseCulturalAuthor != null">CHINESE_CULTURAL_AUTHOR,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="chineseCulturalType != null">CHINESE_CULTURAL_TYPE,</if>
+                <if test="chineseCulturalStatus != null">CHINESE_CULTURAL_STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="chineseCulturalName != null"> #{chineseCulturalName,jdbcType=VARCHAR},</if>
+                <if test="chineseCulturalContent != null"> #{chineseCulturalContent,jdbcType=VARCHAR},</if>
+                <if test="chineseCulturalSource != null"> #{chineseCulturalSource,jdbcType=VARCHAR},</if>
+                <if test="chineseCulturalAuthor != null"> #{chineseCulturalAuthor,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="chineseCulturalType != null"> #{chineseCulturalType,jdbcType=VARCHAR},</if>
+                <if test="chineseCulturalStatus != null"> #{chineseCulturalStatus,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproCulturalResources">
+        update tb_culpro_cultural_resources
+        <set>
+                <if test="chineseCulturalName != null">
+                    CHINESE_CULTURAL_NAME = #{chineseCulturalName,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseCulturalContent != null">
+                    CHINESE_CULTURAL_CONTENT = #{chineseCulturalContent,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseCulturalSource != null">
+                    CHINESE_CULTURAL_SOURCE = #{chineseCulturalSource,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseCulturalAuthor != null">
+                    CHINESE_CULTURAL_AUTHOR = #{chineseCulturalAuthor,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="chineseCulturalType != null">
+                    CHINESE_CULTURAL_TYPE = #{chineseCulturalType,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseCulturalStatus != null">
+                    CHINESE_CULTURAL_STATUS = #{chineseCulturalStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproCulturalResources">
+        update tb_culpro_cultural_resources
+        set 
+            CHINESE_CULTURAL_NAME =  #{chineseCulturalName,jdbcType=VARCHAR},
+            CHINESE_CULTURAL_CONTENT =  #{chineseCulturalContent,jdbcType=VARCHAR},
+            CHINESE_CULTURAL_SOURCE =  #{chineseCulturalSource,jdbcType=VARCHAR},
+            CHINESE_CULTURAL_AUTHOR =  #{chineseCulturalAuthor,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            CHINESE_CULTURAL_TYPE =  #{chineseCulturalType,jdbcType=VARCHAR},
+            CHINESE_CULTURAL_STATUS =  #{chineseCulturalStatus,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

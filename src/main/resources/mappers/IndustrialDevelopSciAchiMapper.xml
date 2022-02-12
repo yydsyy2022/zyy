@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.IndustrialDevelopSciAchiMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.IndustrialDevelopSciAchi">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="projectName" column="PROJECT_NAME" jdbcType="VARCHAR"/>
+            <result property="industrialDevelopName" column="INDUSTRIAL_DEVELOP_NAME" jdbcType="VARCHAR"/>
+            <result property="industrialDevelopLeader" column="INDUSTRIAL_DEVELOP_LEADER" jdbcType="VARCHAR"/>
+            <result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="context" column="CONTEXT" jdbcType="VARCHAR"/>
+            <result property="industrialDevelopStatus" column="INDUSTRIAL_DEVELOP_STATUS" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,PROJECT_NAME,
+        INDUSTRIAL_DEVELOP_NAME,INDUSTRIAL_DEVELOP_LEADER,CONTACTS,
+        PHONE,CONTEXT,INDUSTRIAL_DEVELOP_STATUS,
+        VISIT_NUM,ORG_CODE,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_sci_achi
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_industrial_develop_sci_achi
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopSciAchi" useGeneratedKeys="true">
+        insert into tb_industrial_develop_sci_achi
+        ( itemID,itemCode,PROJECT_NAME
+        ,INDUSTRIAL_DEVELOP_NAME,INDUSTRIAL_DEVELOP_LEADER,CONTACTS
+        ,PHONE,CONTEXT,INDUSTRIAL_DEVELOP_STATUS
+        ,VISIT_NUM,ORG_CODE,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{projectName,jdbcType=VARCHAR}
+        ,#{industrialDevelopName,jdbcType=VARCHAR},#{industrialDevelopLeader,jdbcType=VARCHAR},#{contacts,jdbcType=VARCHAR}
+        ,#{phone,jdbcType=VARCHAR},#{context,jdbcType=VARCHAR},#{industrialDevelopStatus,jdbcType=VARCHAR}
+        ,#{visitNum,jdbcType=INTEGER},#{orgCode,jdbcType=CHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopSciAchi" useGeneratedKeys="true">
+        insert into tb_industrial_develop_sci_achi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="projectName != null">PROJECT_NAME,</if>
+                <if test="industrialDevelopName != null">INDUSTRIAL_DEVELOP_NAME,</if>
+                <if test="industrialDevelopLeader != null">INDUSTRIAL_DEVELOP_LEADER,</if>
+                <if test="contacts != null">CONTACTS,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="context != null">CONTEXT,</if>
+                <if test="industrialDevelopStatus != null">INDUSTRIAL_DEVELOP_STATUS,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="projectName != null"> #{projectName,jdbcType=VARCHAR},</if>
+                <if test="industrialDevelopName != null"> #{industrialDevelopName,jdbcType=VARCHAR},</if>
+                <if test="industrialDevelopLeader != null"> #{industrialDevelopLeader,jdbcType=VARCHAR},</if>
+                <if test="contacts != null"> #{contacts,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="context != null"> #{context,jdbcType=VARCHAR},</if>
+                <if test="industrialDevelopStatus != null"> #{industrialDevelopStatus,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=CHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopSciAchi">
+        update tb_industrial_develop_sci_achi
+        <set>
+                <if test="projectName != null">
+                    PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+                </if>
+                <if test="industrialDevelopName != null">
+                    INDUSTRIAL_DEVELOP_NAME = #{industrialDevelopName,jdbcType=VARCHAR},
+                </if>
+                <if test="industrialDevelopLeader != null">
+                    INDUSTRIAL_DEVELOP_LEADER = #{industrialDevelopLeader,jdbcType=VARCHAR},
+                </if>
+                <if test="contacts != null">
+                    CONTACTS = #{contacts,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="context != null">
+                    CONTEXT = #{context,jdbcType=VARCHAR},
+                </if>
+                <if test="industrialDevelopStatus != null">
+                    INDUSTRIAL_DEVELOP_STATUS = #{industrialDevelopStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=CHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopSciAchi">
+        update tb_industrial_develop_sci_achi
+        set 
+            PROJECT_NAME =  #{projectName,jdbcType=VARCHAR},
+            INDUSTRIAL_DEVELOP_NAME =  #{industrialDevelopName,jdbcType=VARCHAR},
+            INDUSTRIAL_DEVELOP_LEADER =  #{industrialDevelopLeader,jdbcType=VARCHAR},
+            CONTACTS =  #{contacts,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            CONTEXT =  #{context,jdbcType=VARCHAR},
+            INDUSTRIAL_DEVELOP_STATUS =  #{industrialDevelopStatus,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            ORG_CODE =  #{orgCode,jdbcType=CHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

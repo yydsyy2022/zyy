@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.GovernresAdviceCopyMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.GovernresAdviceCopy">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="dataCode" column="DATA_CODE" jdbcType="VARCHAR"/>
+            <result property="initial" column="INITIAL" jdbcType="VARCHAR"/>
+            <result property="initialDate" column="INITIAL_DATE" jdbcType="TIMESTAMP"/>
+            <result property="department" column="DEPARTMENT" jdbcType="VARCHAR"/>
+            <result property="departmentName" column="DEPARTMENT_NAME" jdbcType="VARCHAR"/>
+            <result property="departDate" column="DEPART_DATE" jdbcType="DATE"/>
+            <result property="office" column="OFFICE" jdbcType="VARCHAR"/>
+            <result property="officeName" column="OFFICE_NAME" jdbcType="VARCHAR"/>
+            <result property="officeDate" column="OFFICE_DATE" jdbcType="TIMESTAMP"/>
+            <result property="deputyDirector" column="DEPUTY_DIRECTOR" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorName" column="DEPUTY_DIRECTOR_NAME" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorDate" column="DEPUTY_DIRECTOR_DATE" jdbcType="TIMESTAMP"/>
+            <result property="director" column="DIRECTOR" jdbcType="VARCHAR"/>
+            <result property="directorName" column="DIRECTOR_NAME" jdbcType="VARCHAR"/>
+            <result property="directorDate" column="DIRECTOR_DATE" jdbcType="TIMESTAMP"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,DATA_CODE,
+        INITIAL,INITIAL_DATE,DEPARTMENT,
+        DEPARTMENT_NAME,DEPART_DATE,OFFICE,
+        OFFICE_NAME,OFFICE_DATE,DEPUTY_DIRECTOR,
+        DEPUTY_DIRECTOR_NAME,DEPUTY_DIRECTOR_DATE,DIRECTOR,
+        DIRECTOR_NAME,DIRECTOR_DATE,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_governres_advice_copy
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_governres_advice_copy
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresAdviceCopy" useGeneratedKeys="true">
+        insert into tb_governres_advice_copy
+        ( itemID,itemCode,DATA_CODE
+        ,INITIAL,INITIAL_DATE,DEPARTMENT
+        ,DEPARTMENT_NAME,DEPART_DATE,OFFICE
+        ,OFFICE_NAME,OFFICE_DATE,DEPUTY_DIRECTOR
+        ,DEPUTY_DIRECTOR_NAME,DEPUTY_DIRECTOR_DATE,DIRECTOR
+        ,DIRECTOR_NAME,DIRECTOR_DATE,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{dataCode,jdbcType=VARCHAR}
+        ,#{initial,jdbcType=VARCHAR},#{initialDate,jdbcType=TIMESTAMP},#{department,jdbcType=VARCHAR}
+        ,#{departmentName,jdbcType=VARCHAR},#{departDate,jdbcType=DATE},#{office,jdbcType=VARCHAR}
+        ,#{officeName,jdbcType=VARCHAR},#{officeDate,jdbcType=TIMESTAMP},#{deputyDirector,jdbcType=VARCHAR}
+        ,#{deputyDirectorName,jdbcType=VARCHAR},#{deputyDirectorDate,jdbcType=TIMESTAMP},#{director,jdbcType=VARCHAR}
+        ,#{directorName,jdbcType=VARCHAR},#{directorDate,jdbcType=TIMESTAMP},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresAdviceCopy" useGeneratedKeys="true">
+        insert into tb_governres_advice_copy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="dataCode != null">DATA_CODE,</if>
+                <if test="initial != null">INITIAL,</if>
+                <if test="initialDate != null">INITIAL_DATE,</if>
+                <if test="department != null">DEPARTMENT,</if>
+                <if test="departmentName != null">DEPARTMENT_NAME,</if>
+                <if test="departDate != null">DEPART_DATE,</if>
+                <if test="office != null">OFFICE,</if>
+                <if test="officeName != null">OFFICE_NAME,</if>
+                <if test="officeDate != null">OFFICE_DATE,</if>
+                <if test="deputyDirector != null">DEPUTY_DIRECTOR,</if>
+                <if test="deputyDirectorName != null">DEPUTY_DIRECTOR_NAME,</if>
+                <if test="deputyDirectorDate != null">DEPUTY_DIRECTOR_DATE,</if>
+                <if test="director != null">DIRECTOR,</if>
+                <if test="directorName != null">DIRECTOR_NAME,</if>
+                <if test="directorDate != null">DIRECTOR_DATE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="dataCode != null"> #{dataCode,jdbcType=VARCHAR},</if>
+                <if test="initial != null"> #{initial,jdbcType=VARCHAR},</if>
+                <if test="initialDate != null"> #{initialDate,jdbcType=TIMESTAMP},</if>
+                <if test="department != null"> #{department,jdbcType=VARCHAR},</if>
+                <if test="departmentName != null"> #{departmentName,jdbcType=VARCHAR},</if>
+                <if test="departDate != null"> #{departDate,jdbcType=DATE},</if>
+                <if test="office != null"> #{office,jdbcType=VARCHAR},</if>
+                <if test="officeName != null"> #{officeName,jdbcType=VARCHAR},</if>
+                <if test="officeDate != null"> #{officeDate,jdbcType=TIMESTAMP},</if>
+                <if test="deputyDirector != null"> #{deputyDirector,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorName != null"> #{deputyDirectorName,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorDate != null"> #{deputyDirectorDate,jdbcType=TIMESTAMP},</if>
+                <if test="director != null"> #{director,jdbcType=VARCHAR},</if>
+                <if test="directorName != null"> #{directorName,jdbcType=VARCHAR},</if>
+                <if test="directorDate != null"> #{directorDate,jdbcType=TIMESTAMP},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.GovernresAdviceCopy">
+        update tb_governres_advice_copy
+        <set>
+                <if test="dataCode != null">
+                    DATA_CODE = #{dataCode,jdbcType=VARCHAR},
+                </if>
+                <if test="initial != null">
+                    INITIAL = #{initial,jdbcType=VARCHAR},
+                </if>
+                <if test="initialDate != null">
+                    INITIAL_DATE = #{initialDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="department != null">
+                    DEPARTMENT = #{department,jdbcType=VARCHAR},
+                </if>
+                <if test="departmentName != null">
+                    DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+                </if>
+                <if test="departDate != null">
+                    DEPART_DATE = #{departDate,jdbcType=DATE},
+                </if>
+                <if test="office != null">
+                    OFFICE = #{office,jdbcType=VARCHAR},
+                </if>
+                <if test="officeName != null">
+                    OFFICE_NAME = #{officeName,jdbcType=VARCHAR},
+                </if>
+                <if test="officeDate != null">
+                    OFFICE_DATE = #{officeDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deputyDirector != null">
+                    DEPUTY_DIRECTOR = #{deputyDirector,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorName != null">
+                    DEPUTY_DIRECTOR_NAME = #{deputyDirectorName,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorDate != null">
+                    DEPUTY_DIRECTOR_DATE = #{deputyDirectorDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="director != null">
+                    DIRECTOR = #{director,jdbcType=VARCHAR},
+                </if>
+                <if test="directorName != null">
+                    DIRECTOR_NAME = #{directorName,jdbcType=VARCHAR},
+                </if>
+                <if test="directorDate != null">
+                    DIRECTOR_DATE = #{directorDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.GovernresAdviceCopy">
+        update tb_governres_advice_copy
+        set 
+            DATA_CODE =  #{dataCode,jdbcType=VARCHAR},
+            INITIAL =  #{initial,jdbcType=VARCHAR},
+            INITIAL_DATE =  #{initialDate,jdbcType=TIMESTAMP},
+            DEPARTMENT =  #{department,jdbcType=VARCHAR},
+            DEPARTMENT_NAME =  #{departmentName,jdbcType=VARCHAR},
+            DEPART_DATE =  #{departDate,jdbcType=DATE},
+            OFFICE =  #{office,jdbcType=VARCHAR},
+            OFFICE_NAME =  #{officeName,jdbcType=VARCHAR},
+            OFFICE_DATE =  #{officeDate,jdbcType=TIMESTAMP},
+            DEPUTY_DIRECTOR =  #{deputyDirector,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_NAME =  #{deputyDirectorName,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_DATE =  #{deputyDirectorDate,jdbcType=TIMESTAMP},
+            DIRECTOR =  #{director,jdbcType=VARCHAR},
+            DIRECTOR_NAME =  #{directorName,jdbcType=VARCHAR},
+            DIRECTOR_DATE =  #{directorDate,jdbcType=TIMESTAMP},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproPreTreMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproPreTre">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="dataTitle" column="DATA_TITLE" jdbcType="VARCHAR"/>
+            <result property="dataAuthor" column="DATA_AUTHOR" jdbcType="VARCHAR"/>
+            <result property="dataSource" column="DATA_SOURCE" jdbcType="VARCHAR"/>
+            <result property="dataContent" column="DATA_CONTENT" jdbcType="VARCHAR"/>
+            <result property="dataStatus" column="DATA_STATUS" jdbcType="VARCHAR"/>
+            <result property="dataType" column="DATA_TYPE" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,DATA_TITLE,
+        DATA_AUTHOR,DATA_SOURCE,DATA_CONTENT,
+        DATA_STATUS,DATA_TYPE,VISIT_NUM,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_pre_tre
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_pre_tre
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproPreTre" useGeneratedKeys="true">
+        insert into tb_culpro_pre_tre
+        ( itemID,itemCode,DATA_TITLE
+        ,DATA_AUTHOR,DATA_SOURCE,DATA_CONTENT
+        ,DATA_STATUS,DATA_TYPE,VISIT_NUM
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{dataTitle,jdbcType=VARCHAR}
+        ,#{dataAuthor,jdbcType=VARCHAR},#{dataSource,jdbcType=VARCHAR},#{dataContent,jdbcType=VARCHAR}
+        ,#{dataStatus,jdbcType=VARCHAR},#{dataType,jdbcType=VARCHAR},#{visitNum,jdbcType=INTEGER}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproPreTre" useGeneratedKeys="true">
+        insert into tb_culpro_pre_tre
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="dataTitle != null">DATA_TITLE,</if>
+                <if test="dataAuthor != null">DATA_AUTHOR,</if>
+                <if test="dataSource != null">DATA_SOURCE,</if>
+                <if test="dataContent != null">DATA_CONTENT,</if>
+                <if test="dataStatus != null">DATA_STATUS,</if>
+                <if test="dataType != null">DATA_TYPE,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="dataTitle != null"> #{dataTitle,jdbcType=VARCHAR},</if>
+                <if test="dataAuthor != null"> #{dataAuthor,jdbcType=VARCHAR},</if>
+                <if test="dataSource != null"> #{dataSource,jdbcType=VARCHAR},</if>
+                <if test="dataContent != null"> #{dataContent,jdbcType=VARCHAR},</if>
+                <if test="dataStatus != null"> #{dataStatus,jdbcType=VARCHAR},</if>
+                <if test="dataType != null"> #{dataType,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproPreTre">
+        update tb_culpro_pre_tre
+        <set>
+                <if test="dataTitle != null">
+                    DATA_TITLE = #{dataTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="dataAuthor != null">
+                    DATA_AUTHOR = #{dataAuthor,jdbcType=VARCHAR},
+                </if>
+                <if test="dataSource != null">
+                    DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+                </if>
+                <if test="dataContent != null">
+                    DATA_CONTENT = #{dataContent,jdbcType=VARCHAR},
+                </if>
+                <if test="dataStatus != null">
+                    DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="dataType != null">
+                    DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproPreTre">
+        update tb_culpro_pre_tre
+        set 
+            DATA_TITLE =  #{dataTitle,jdbcType=VARCHAR},
+            DATA_AUTHOR =  #{dataAuthor,jdbcType=VARCHAR},
+            DATA_SOURCE =  #{dataSource,jdbcType=VARCHAR},
+            DATA_CONTENT =  #{dataContent,jdbcType=VARCHAR},
+            DATA_STATUS =  #{dataStatus,jdbcType=VARCHAR},
+            DATA_TYPE =  #{dataType,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

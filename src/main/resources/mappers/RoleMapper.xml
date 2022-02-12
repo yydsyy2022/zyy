@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.Role">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="roleName" column="ROLE_NAME" jdbcType="VARCHAR"/>
+            <result property="roleDescription" column="ROLE_DESCRIPTION" jdbcType="VARCHAR"/>
+            <result property="appCode" column="APP_CODE" jdbcType="VARCHAR"/>
+            <result property="roleType" column="ROLE_TYPE" jdbcType="INTEGER"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,ROLE_NAME,
+        ROLE_DESCRIPTION,APP_CODE,ROLE_TYPE,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from role
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.Role" useGeneratedKeys="true">
+        insert into role
+        ( itemID,itemCode,ROLE_NAME
+        ,ROLE_DESCRIPTION,APP_CODE,ROLE_TYPE
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{roleName,jdbcType=VARCHAR}
+        ,#{roleDescription,jdbcType=VARCHAR},#{appCode,jdbcType=VARCHAR},#{roleType,jdbcType=INTEGER}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.Role" useGeneratedKeys="true">
+        insert into role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="roleName != null">ROLE_NAME,</if>
+                <if test="roleDescription != null">ROLE_DESCRIPTION,</if>
+                <if test="appCode != null">APP_CODE,</if>
+                <if test="roleType != null">ROLE_TYPE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="roleName != null"> #{roleName,jdbcType=VARCHAR},</if>
+                <if test="roleDescription != null"> #{roleDescription,jdbcType=VARCHAR},</if>
+                <if test="appCode != null"> #{appCode,jdbcType=VARCHAR},</if>
+                <if test="roleType != null"> #{roleType,jdbcType=INTEGER},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.Role">
+        update role
+        <set>
+                <if test="roleName != null">
+                    ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+                </if>
+                <if test="roleDescription != null">
+                    ROLE_DESCRIPTION = #{roleDescription,jdbcType=VARCHAR},
+                </if>
+                <if test="appCode != null">
+                    APP_CODE = #{appCode,jdbcType=VARCHAR},
+                </if>
+                <if test="roleType != null">
+                    ROLE_TYPE = #{roleType,jdbcType=INTEGER},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.Role">
+        update role
+        set 
+            ROLE_NAME =  #{roleName,jdbcType=VARCHAR},
+            ROLE_DESCRIPTION =  #{roleDescription,jdbcType=VARCHAR},
+            APP_CODE =  #{appCode,jdbcType=VARCHAR},
+            ROLE_TYPE =  #{roleType,jdbcType=INTEGER},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

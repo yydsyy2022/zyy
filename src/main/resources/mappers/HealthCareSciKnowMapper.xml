@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.HealthCareSciKnowMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.HealthCareSciKnow">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="scienceKnowledgeName" column="SCIENCE_KNOWLEDGE_NAME" jdbcType="VARCHAR"/>
+            <result property="scienceKnowledgeSource" column="SCIENCE_KNOWLEDGE_SOURCE" jdbcType="VARCHAR"/>
+            <result property="scienceKnowledgeAuthor" column="SCIENCE_KNOWLEDGE_AUTHOR" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+            <result property="scienceKnowledgeStatus" column="SCIENCE_KNOWLEDGE_STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,SCIENCE_KNOWLEDGE_NAME,
+        SCIENCE_KNOWLEDGE_SOURCE,SCIENCE_KNOWLEDGE_AUTHOR,VISIT_NUM,
+        CONTENT,SCIENCE_KNOWLEDGE_STATUS,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_health_care_sci_know
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_health_care_sci_know
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.HealthCareSciKnow" useGeneratedKeys="true">
+        insert into tb_health_care_sci_know
+        ( itemID,itemCode,SCIENCE_KNOWLEDGE_NAME
+        ,SCIENCE_KNOWLEDGE_SOURCE,SCIENCE_KNOWLEDGE_AUTHOR,VISIT_NUM
+        ,CONTENT,SCIENCE_KNOWLEDGE_STATUS,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{scienceKnowledgeName,jdbcType=VARCHAR}
+        ,#{scienceKnowledgeSource,jdbcType=VARCHAR},#{scienceKnowledgeAuthor,jdbcType=VARCHAR},#{visitNum,jdbcType=INTEGER}
+        ,#{content,jdbcType=VARCHAR},#{scienceKnowledgeStatus,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.HealthCareSciKnow" useGeneratedKeys="true">
+        insert into tb_health_care_sci_know
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="scienceKnowledgeName != null">SCIENCE_KNOWLEDGE_NAME,</if>
+                <if test="scienceKnowledgeSource != null">SCIENCE_KNOWLEDGE_SOURCE,</if>
+                <if test="scienceKnowledgeAuthor != null">SCIENCE_KNOWLEDGE_AUTHOR,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="content != null">CONTENT,</if>
+                <if test="scienceKnowledgeStatus != null">SCIENCE_KNOWLEDGE_STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="scienceKnowledgeName != null"> #{scienceKnowledgeName,jdbcType=VARCHAR},</if>
+                <if test="scienceKnowledgeSource != null"> #{scienceKnowledgeSource,jdbcType=VARCHAR},</if>
+                <if test="scienceKnowledgeAuthor != null"> #{scienceKnowledgeAuthor,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="content != null"> #{content,jdbcType=VARCHAR},</if>
+                <if test="scienceKnowledgeStatus != null"> #{scienceKnowledgeStatus,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.HealthCareSciKnow">
+        update tb_health_care_sci_know
+        <set>
+                <if test="scienceKnowledgeName != null">
+                    SCIENCE_KNOWLEDGE_NAME = #{scienceKnowledgeName,jdbcType=VARCHAR},
+                </if>
+                <if test="scienceKnowledgeSource != null">
+                    SCIENCE_KNOWLEDGE_SOURCE = #{scienceKnowledgeSource,jdbcType=VARCHAR},
+                </if>
+                <if test="scienceKnowledgeAuthor != null">
+                    SCIENCE_KNOWLEDGE_AUTHOR = #{scienceKnowledgeAuthor,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="content != null">
+                    CONTENT = #{content,jdbcType=VARCHAR},
+                </if>
+                <if test="scienceKnowledgeStatus != null">
+                    SCIENCE_KNOWLEDGE_STATUS = #{scienceKnowledgeStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.HealthCareSciKnow">
+        update tb_health_care_sci_know
+        set 
+            SCIENCE_KNOWLEDGE_NAME =  #{scienceKnowledgeName,jdbcType=VARCHAR},
+            SCIENCE_KNOWLEDGE_SOURCE =  #{scienceKnowledgeSource,jdbcType=VARCHAR},
+            SCIENCE_KNOWLEDGE_AUTHOR =  #{scienceKnowledgeAuthor,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            CONTENT =  #{content,jdbcType=VARCHAR},
+            SCIENCE_KNOWLEDGE_STATUS =  #{scienceKnowledgeStatus,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

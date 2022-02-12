@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.GovernresCountersignCopyMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.GovernresCountersignCopy">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="receivingTitle" column="RECEIVING_TITLE" jdbcType="VARCHAR"/>
+            <result property="number" column="NUMBER" jdbcType="INTEGER"/>
+            <result property="govPunlic" column="GOV_PUNLIC" jdbcType="VARCHAR"/>
+            <result property="reason" column="REASON" jdbcType="VARCHAR"/>
+            <result property="fileNo" column="FILE_NO" jdbcType="VARCHAR"/>
+            <result property="classification" column="CLASSIFICATION" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+            <result property="parment" column="PARMENT" jdbcType="VARCHAR"/>
+            <result property="fileNumber" column="FILE_NUMBER" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,RECEIVING_TITLE,
+        NUMBER,GOV_PUNLIC,REASON,
+        FILE_NO,CLASSIFICATION,STATUS,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt,PARMENT,FILE_NUMBER
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_governres_countersign_copy
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_governres_countersign_copy
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresCountersignCopy" useGeneratedKeys="true">
+        insert into tb_governres_countersign_copy
+        ( itemID,itemCode,RECEIVING_TITLE
+        ,NUMBER,GOV_PUNLIC,REASON
+        ,FILE_NO,CLASSIFICATION,STATUS
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt,PARMENT,FILE_NUMBER
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{receivingTitle,jdbcType=VARCHAR}
+        ,#{number,jdbcType=INTEGER},#{govPunlic,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR}
+        ,#{fileNo,jdbcType=VARCHAR},#{classification,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP},#{parment,jdbcType=VARCHAR},#{fileNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresCountersignCopy" useGeneratedKeys="true">
+        insert into tb_governres_countersign_copy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="receivingTitle != null">RECEIVING_TITLE,</if>
+                <if test="number != null">NUMBER,</if>
+                <if test="govPunlic != null">GOV_PUNLIC,</if>
+                <if test="reason != null">REASON,</if>
+                <if test="fileNo != null">FILE_NO,</if>
+                <if test="classification != null">CLASSIFICATION,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+                <if test="parment != null">PARMENT,</if>
+                <if test="fileNumber != null">FILE_NUMBER,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="receivingTitle != null"> #{receivingTitle,jdbcType=VARCHAR},</if>
+                <if test="number != null"> #{number,jdbcType=INTEGER},</if>
+                <if test="govPunlic != null"> #{govPunlic,jdbcType=VARCHAR},</if>
+                <if test="reason != null"> #{reason,jdbcType=VARCHAR},</if>
+                <if test="fileNo != null"> #{fileNo,jdbcType=VARCHAR},</if>
+                <if test="classification != null"> #{classification,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+                <if test="parment != null"> #{parment,jdbcType=VARCHAR},</if>
+                <if test="fileNumber != null"> #{fileNumber,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.GovernresCountersignCopy">
+        update tb_governres_countersign_copy
+        <set>
+                <if test="receivingTitle != null">
+                    RECEIVING_TITLE = #{receivingTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="number != null">
+                    NUMBER = #{number,jdbcType=INTEGER},
+                </if>
+                <if test="govPunlic != null">
+                    GOV_PUNLIC = #{govPunlic,jdbcType=VARCHAR},
+                </if>
+                <if test="reason != null">
+                    REASON = #{reason,jdbcType=VARCHAR},
+                </if>
+                <if test="fileNo != null">
+                    FILE_NO = #{fileNo,jdbcType=VARCHAR},
+                </if>
+                <if test="classification != null">
+                    CLASSIFICATION = #{classification,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="parment != null">
+                    PARMENT = #{parment,jdbcType=VARCHAR},
+                </if>
+                <if test="fileNumber != null">
+                    FILE_NUMBER = #{fileNumber,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.GovernresCountersignCopy">
+        update tb_governres_countersign_copy
+        set 
+            RECEIVING_TITLE =  #{receivingTitle,jdbcType=VARCHAR},
+            NUMBER =  #{number,jdbcType=INTEGER},
+            GOV_PUNLIC =  #{govPunlic,jdbcType=VARCHAR},
+            REASON =  #{reason,jdbcType=VARCHAR},
+            FILE_NO =  #{fileNo,jdbcType=VARCHAR},
+            CLASSIFICATION =  #{classification,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP},
+            PARMENT =  #{parment,jdbcType=VARCHAR},
+            FILE_NUMBER =  #{fileNumber,jdbcType=VARCHAR}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.GovernresRequestReportMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.GovernresRequestReport">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="reportTitle" column="REPORT_TITLE" jdbcType="VARCHAR"/>
+            <result property="reportContent" column="REPORT_CONTENT" jdbcType="VARCHAR"/>
+            <result property="reportDataStatus" column="REPORT_DATA_STATUS" jdbcType="VARCHAR"/>
+            <result property="reason" column="REASON" jdbcType="VARCHAR"/>
+            <result property="reasonone" column="REASONONE" jdbcType="VARCHAR"/>
+            <result property="reasontwo" column="REASONTWO" jdbcType="VARCHAR"/>
+            <result property="reasonth" column="REASONTH" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="updaterone" column="UPDATERONE" jdbcType="VARCHAR"/>
+            <result property="updatertwo" column="UPDATERTWO" jdbcType="VARCHAR"/>
+            <result property="updaterf" column="UPDATERF" jdbcType="VARCHAR"/>
+            <result property="updaterth" column="UPDATERTH" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+            <result property="updateone" column="UPDATEONE" jdbcType="TIMESTAMP"/>
+            <result property="updatetwo" column="UPDATETWO" jdbcType="TIMESTAMP"/>
+            <result property="updatef" column="UPDATEF" jdbcType="TIMESTAMP"/>
+            <result property="updateth" column="UPDATETH" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,REPORT_TITLE,
+        REPORT_CONTENT,REPORT_DATA_STATUS,REASON,
+        REASONONE,REASONTWO,REASONTH,
+        CREATER,itemCreateAt,UPDATER,
+        UPDATERONE,UPDATERTWO,UPDATERF,
+        UPDATERTH,itemUpdateAt,UPDATEONE,
+        UPDATETWO,UPDATEF,UPDATETH
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_governres_request_report
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_governres_request_report
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresRequestReport" useGeneratedKeys="true">
+        insert into tb_governres_request_report
+        ( itemID,itemCode,REPORT_TITLE
+        ,REPORT_CONTENT,REPORT_DATA_STATUS,REASON
+        ,REASONONE,REASONTWO,REASONTH
+        ,CREATER,itemCreateAt,UPDATER
+        ,UPDATERONE,UPDATERTWO,UPDATERF
+        ,UPDATERTH,itemUpdateAt,UPDATEONE
+        ,UPDATETWO,UPDATEF,UPDATETH
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{reportTitle,jdbcType=VARCHAR}
+        ,#{reportContent,jdbcType=VARCHAR},#{reportDataStatus,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR}
+        ,#{reasonone,jdbcType=VARCHAR},#{reasontwo,jdbcType=VARCHAR},#{reasonth,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{updaterone,jdbcType=VARCHAR},#{updatertwo,jdbcType=VARCHAR},#{updaterf,jdbcType=VARCHAR}
+        ,#{updaterth,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP},#{updateone,jdbcType=TIMESTAMP}
+        ,#{updatetwo,jdbcType=TIMESTAMP},#{updatef,jdbcType=TIMESTAMP},#{updateth,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresRequestReport" useGeneratedKeys="true">
+        insert into tb_governres_request_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="reportTitle != null">REPORT_TITLE,</if>
+                <if test="reportContent != null">REPORT_CONTENT,</if>
+                <if test="reportDataStatus != null">REPORT_DATA_STATUS,</if>
+                <if test="reason != null">REASON,</if>
+                <if test="reasonone != null">REASONONE,</if>
+                <if test="reasontwo != null">REASONTWO,</if>
+                <if test="reasonth != null">REASONTH,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="updaterone != null">UPDATERONE,</if>
+                <if test="updatertwo != null">UPDATERTWO,</if>
+                <if test="updaterf != null">UPDATERF,</if>
+                <if test="updaterth != null">UPDATERTH,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+                <if test="updateone != null">UPDATEONE,</if>
+                <if test="updatetwo != null">UPDATETWO,</if>
+                <if test="updatef != null">UPDATEF,</if>
+                <if test="updateth != null">UPDATETH,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="reportTitle != null"> #{reportTitle,jdbcType=VARCHAR},</if>
+                <if test="reportContent != null"> #{reportContent,jdbcType=VARCHAR},</if>
+                <if test="reportDataStatus != null"> #{reportDataStatus,jdbcType=VARCHAR},</if>
+                <if test="reason != null"> #{reason,jdbcType=VARCHAR},</if>
+                <if test="reasonone != null"> #{reasonone,jdbcType=VARCHAR},</if>
+                <if test="reasontwo != null"> #{reasontwo,jdbcType=VARCHAR},</if>
+                <if test="reasonth != null"> #{reasonth,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="updaterone != null"> #{updaterone,jdbcType=VARCHAR},</if>
+                <if test="updatertwo != null"> #{updatertwo,jdbcType=VARCHAR},</if>
+                <if test="updaterf != null"> #{updaterf,jdbcType=VARCHAR},</if>
+                <if test="updaterth != null"> #{updaterth,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+                <if test="updateone != null"> #{updateone,jdbcType=TIMESTAMP},</if>
+                <if test="updatetwo != null"> #{updatetwo,jdbcType=TIMESTAMP},</if>
+                <if test="updatef != null"> #{updatef,jdbcType=TIMESTAMP},</if>
+                <if test="updateth != null"> #{updateth,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.GovernresRequestReport">
+        update tb_governres_request_report
+        <set>
+                <if test="reportTitle != null">
+                    REPORT_TITLE = #{reportTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="reportContent != null">
+                    REPORT_CONTENT = #{reportContent,jdbcType=VARCHAR},
+                </if>
+                <if test="reportDataStatus != null">
+                    REPORT_DATA_STATUS = #{reportDataStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="reason != null">
+                    REASON = #{reason,jdbcType=VARCHAR},
+                </if>
+                <if test="reasonone != null">
+                    REASONONE = #{reasonone,jdbcType=VARCHAR},
+                </if>
+                <if test="reasontwo != null">
+                    REASONTWO = #{reasontwo,jdbcType=VARCHAR},
+                </if>
+                <if test="reasonth != null">
+                    REASONTH = #{reasonth,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="updaterone != null">
+                    UPDATERONE = #{updaterone,jdbcType=VARCHAR},
+                </if>
+                <if test="updatertwo != null">
+                    UPDATERTWO = #{updatertwo,jdbcType=VARCHAR},
+                </if>
+                <if test="updaterf != null">
+                    UPDATERF = #{updaterf,jdbcType=VARCHAR},
+                </if>
+                <if test="updaterth != null">
+                    UPDATERTH = #{updaterth,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateone != null">
+                    UPDATEONE = #{updateone,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updatetwo != null">
+                    UPDATETWO = #{updatetwo,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updatef != null">
+                    UPDATEF = #{updatef,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateth != null">
+                    UPDATETH = #{updateth,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.GovernresRequestReport">
+        update tb_governres_request_report
+        set 
+            REPORT_TITLE =  #{reportTitle,jdbcType=VARCHAR},
+            REPORT_CONTENT =  #{reportContent,jdbcType=VARCHAR},
+            REPORT_DATA_STATUS =  #{reportDataStatus,jdbcType=VARCHAR},
+            REASON =  #{reason,jdbcType=VARCHAR},
+            REASONONE =  #{reasonone,jdbcType=VARCHAR},
+            REASONTWO =  #{reasontwo,jdbcType=VARCHAR},
+            REASONTH =  #{reasonth,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            UPDATERONE =  #{updaterone,jdbcType=VARCHAR},
+            UPDATERTWO =  #{updatertwo,jdbcType=VARCHAR},
+            UPDATERF =  #{updaterf,jdbcType=VARCHAR},
+            UPDATERTH =  #{updaterth,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP},
+            UPDATEONE =  #{updateone,jdbcType=TIMESTAMP},
+            UPDATETWO =  #{updatetwo,jdbcType=TIMESTAMP},
+            UPDATEF =  #{updatef,jdbcType=TIMESTAMP},
+            UPDATETH =  #{updateth,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

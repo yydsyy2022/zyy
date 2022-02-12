@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.GovernresAdviceMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.GovernresAdvice">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="dataCode" column="DATA_CODE" jdbcType="VARCHAR"/>
+            <result property="initial" column="INITIAL" jdbcType="VARCHAR"/>
+            <result property="initialDate" column="INITIAL_DATE" jdbcType="TIMESTAMP"/>
+            <result property="department" column="DEPARTMENT" jdbcType="VARCHAR"/>
+            <result property="departmentName" column="DEPARTMENT_NAME" jdbcType="VARCHAR"/>
+            <result property="departDate" column="DEPART_DATE" jdbcType="DATE"/>
+            <result property="office" column="OFFICE" jdbcType="VARCHAR"/>
+            <result property="officeName" column="OFFICE_NAME" jdbcType="VARCHAR"/>
+            <result property="officeDate" column="OFFICE_DATE" jdbcType="TIMESTAMP"/>
+            <result property="deputyDirector" column="DEPUTY_DIRECTOR" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorName" column="DEPUTY_DIRECTOR_NAME" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorDate" column="DEPUTY_DIRECTOR_DATE" jdbcType="TIMESTAMP"/>
+            <result property="deputyDirector1" column="DEPUTY_DIRECTOR1" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorName1" column="DEPUTY_DIRECTOR_NAME1" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorDate1" column="DEPUTY_DIRECTOR_DATE1" jdbcType="TIMESTAMP"/>
+            <result property="deputyDirector2" column="DEPUTY_DIRECTOR2" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorName2" column="DEPUTY_DIRECTOR_NAME2" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorDate2" column="DEPUTY_DIRECTOR_DATE2" jdbcType="TIMESTAMP"/>
+            <result property="deputyDirector3" column="DEPUTY_DIRECTOR3" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorName3" column="DEPUTY_DIRECTOR_NAME3" jdbcType="VARCHAR"/>
+            <result property="deputyDirectorDate3" column="DEPUTY_DIRECTOR_DATE3" jdbcType="TIMESTAMP"/>
+            <result property="director" column="DIRECTOR" jdbcType="VARCHAR"/>
+            <result property="directorName" column="DIRECTOR_NAME" jdbcType="VARCHAR"/>
+            <result property="directorDate" column="DIRECTOR_DATE" jdbcType="TIMESTAMP"/>
+            <result property="signopinion" column="signOpinion" jdbcType="VARCHAR"/>
+            <result property="signdate" column="signDate" jdbcType="VARCHAR"/>
+            <result property="signname" column="signName" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,DATA_CODE,
+        INITIAL,INITIAL_DATE,DEPARTMENT,
+        DEPARTMENT_NAME,DEPART_DATE,OFFICE,
+        OFFICE_NAME,OFFICE_DATE,DEPUTY_DIRECTOR,
+        DEPUTY_DIRECTOR_NAME,DEPUTY_DIRECTOR_DATE,DEPUTY_DIRECTOR1,
+        DEPUTY_DIRECTOR_NAME1,DEPUTY_DIRECTOR_DATE1,DEPUTY_DIRECTOR2,
+        DEPUTY_DIRECTOR_NAME2,DEPUTY_DIRECTOR_DATE2,DEPUTY_DIRECTOR3,
+        DEPUTY_DIRECTOR_NAME3,DEPUTY_DIRECTOR_DATE3,DIRECTOR,
+        DIRECTOR_NAME,DIRECTOR_DATE,signOpinion,
+        signDate,signName,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_governres_advice
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_governres_advice
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresAdvice" useGeneratedKeys="true">
+        insert into tb_governres_advice
+        ( itemID,itemCode,DATA_CODE
+        ,INITIAL,INITIAL_DATE,DEPARTMENT
+        ,DEPARTMENT_NAME,DEPART_DATE,OFFICE
+        ,OFFICE_NAME,OFFICE_DATE,DEPUTY_DIRECTOR
+        ,DEPUTY_DIRECTOR_NAME,DEPUTY_DIRECTOR_DATE,DEPUTY_DIRECTOR1
+        ,DEPUTY_DIRECTOR_NAME1,DEPUTY_DIRECTOR_DATE1,DEPUTY_DIRECTOR2
+        ,DEPUTY_DIRECTOR_NAME2,DEPUTY_DIRECTOR_DATE2,DEPUTY_DIRECTOR3
+        ,DEPUTY_DIRECTOR_NAME3,DEPUTY_DIRECTOR_DATE3,DIRECTOR
+        ,DIRECTOR_NAME,DIRECTOR_DATE,signOpinion
+        ,signDate,signName,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{dataCode,jdbcType=VARCHAR}
+        ,#{initial,jdbcType=VARCHAR},#{initialDate,jdbcType=TIMESTAMP},#{department,jdbcType=VARCHAR}
+        ,#{departmentName,jdbcType=VARCHAR},#{departDate,jdbcType=DATE},#{office,jdbcType=VARCHAR}
+        ,#{officeName,jdbcType=VARCHAR},#{officeDate,jdbcType=TIMESTAMP},#{deputyDirector,jdbcType=VARCHAR}
+        ,#{deputyDirectorName,jdbcType=VARCHAR},#{deputyDirectorDate,jdbcType=TIMESTAMP},#{deputyDirector1,jdbcType=VARCHAR}
+        ,#{deputyDirectorName1,jdbcType=VARCHAR},#{deputyDirectorDate1,jdbcType=TIMESTAMP},#{deputyDirector2,jdbcType=VARCHAR}
+        ,#{deputyDirectorName2,jdbcType=VARCHAR},#{deputyDirectorDate2,jdbcType=TIMESTAMP},#{deputyDirector3,jdbcType=VARCHAR}
+        ,#{deputyDirectorName3,jdbcType=VARCHAR},#{deputyDirectorDate3,jdbcType=TIMESTAMP},#{director,jdbcType=VARCHAR}
+        ,#{directorName,jdbcType=VARCHAR},#{directorDate,jdbcType=TIMESTAMP},#{signopinion,jdbcType=VARCHAR}
+        ,#{signdate,jdbcType=VARCHAR},#{signname,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresAdvice" useGeneratedKeys="true">
+        insert into tb_governres_advice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="dataCode != null">DATA_CODE,</if>
+                <if test="initial != null">INITIAL,</if>
+                <if test="initialDate != null">INITIAL_DATE,</if>
+                <if test="department != null">DEPARTMENT,</if>
+                <if test="departmentName != null">DEPARTMENT_NAME,</if>
+                <if test="departDate != null">DEPART_DATE,</if>
+                <if test="office != null">OFFICE,</if>
+                <if test="officeName != null">OFFICE_NAME,</if>
+                <if test="officeDate != null">OFFICE_DATE,</if>
+                <if test="deputyDirector != null">DEPUTY_DIRECTOR,</if>
+                <if test="deputyDirectorName != null">DEPUTY_DIRECTOR_NAME,</if>
+                <if test="deputyDirectorDate != null">DEPUTY_DIRECTOR_DATE,</if>
+                <if test="deputyDirector1 != null">DEPUTY_DIRECTOR1,</if>
+                <if test="deputyDirectorName1 != null">DEPUTY_DIRECTOR_NAME1,</if>
+                <if test="deputyDirectorDate1 != null">DEPUTY_DIRECTOR_DATE1,</if>
+                <if test="deputyDirector2 != null">DEPUTY_DIRECTOR2,</if>
+                <if test="deputyDirectorName2 != null">DEPUTY_DIRECTOR_NAME2,</if>
+                <if test="deputyDirectorDate2 != null">DEPUTY_DIRECTOR_DATE2,</if>
+                <if test="deputyDirector3 != null">DEPUTY_DIRECTOR3,</if>
+                <if test="deputyDirectorName3 != null">DEPUTY_DIRECTOR_NAME3,</if>
+                <if test="deputyDirectorDate3 != null">DEPUTY_DIRECTOR_DATE3,</if>
+                <if test="director != null">DIRECTOR,</if>
+                <if test="directorName != null">DIRECTOR_NAME,</if>
+                <if test="directorDate != null">DIRECTOR_DATE,</if>
+                <if test="signopinion != null">signOpinion,</if>
+                <if test="signdate != null">signDate,</if>
+                <if test="signname != null">signName,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="dataCode != null"> #{dataCode,jdbcType=VARCHAR},</if>
+                <if test="initial != null"> #{initial,jdbcType=VARCHAR},</if>
+                <if test="initialDate != null"> #{initialDate,jdbcType=TIMESTAMP},</if>
+                <if test="department != null"> #{department,jdbcType=VARCHAR},</if>
+                <if test="departmentName != null"> #{departmentName,jdbcType=VARCHAR},</if>
+                <if test="departDate != null"> #{departDate,jdbcType=DATE},</if>
+                <if test="office != null"> #{office,jdbcType=VARCHAR},</if>
+                <if test="officeName != null"> #{officeName,jdbcType=VARCHAR},</if>
+                <if test="officeDate != null"> #{officeDate,jdbcType=TIMESTAMP},</if>
+                <if test="deputyDirector != null"> #{deputyDirector,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorName != null"> #{deputyDirectorName,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorDate != null"> #{deputyDirectorDate,jdbcType=TIMESTAMP},</if>
+                <if test="deputyDirector1 != null"> #{deputyDirector1,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorName1 != null"> #{deputyDirectorName1,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorDate1 != null"> #{deputyDirectorDate1,jdbcType=TIMESTAMP},</if>
+                <if test="deputyDirector2 != null"> #{deputyDirector2,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorName2 != null"> #{deputyDirectorName2,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorDate2 != null"> #{deputyDirectorDate2,jdbcType=TIMESTAMP},</if>
+                <if test="deputyDirector3 != null"> #{deputyDirector3,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorName3 != null"> #{deputyDirectorName3,jdbcType=VARCHAR},</if>
+                <if test="deputyDirectorDate3 != null"> #{deputyDirectorDate3,jdbcType=TIMESTAMP},</if>
+                <if test="director != null"> #{director,jdbcType=VARCHAR},</if>
+                <if test="directorName != null"> #{directorName,jdbcType=VARCHAR},</if>
+                <if test="directorDate != null"> #{directorDate,jdbcType=TIMESTAMP},</if>
+                <if test="signopinion != null"> #{signopinion,jdbcType=VARCHAR},</if>
+                <if test="signdate != null"> #{signdate,jdbcType=VARCHAR},</if>
+                <if test="signname != null"> #{signname,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.GovernresAdvice">
+        update tb_governres_advice
+        <set>
+                <if test="dataCode != null">
+                    DATA_CODE = #{dataCode,jdbcType=VARCHAR},
+                </if>
+                <if test="initial != null">
+                    INITIAL = #{initial,jdbcType=VARCHAR},
+                </if>
+                <if test="initialDate != null">
+                    INITIAL_DATE = #{initialDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="department != null">
+                    DEPARTMENT = #{department,jdbcType=VARCHAR},
+                </if>
+                <if test="departmentName != null">
+                    DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+                </if>
+                <if test="departDate != null">
+                    DEPART_DATE = #{departDate,jdbcType=DATE},
+                </if>
+                <if test="office != null">
+                    OFFICE = #{office,jdbcType=VARCHAR},
+                </if>
+                <if test="officeName != null">
+                    OFFICE_NAME = #{officeName,jdbcType=VARCHAR},
+                </if>
+                <if test="officeDate != null">
+                    OFFICE_DATE = #{officeDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deputyDirector != null">
+                    DEPUTY_DIRECTOR = #{deputyDirector,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorName != null">
+                    DEPUTY_DIRECTOR_NAME = #{deputyDirectorName,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorDate != null">
+                    DEPUTY_DIRECTOR_DATE = #{deputyDirectorDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deputyDirector1 != null">
+                    DEPUTY_DIRECTOR1 = #{deputyDirector1,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorName1 != null">
+                    DEPUTY_DIRECTOR_NAME1 = #{deputyDirectorName1,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorDate1 != null">
+                    DEPUTY_DIRECTOR_DATE1 = #{deputyDirectorDate1,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deputyDirector2 != null">
+                    DEPUTY_DIRECTOR2 = #{deputyDirector2,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorName2 != null">
+                    DEPUTY_DIRECTOR_NAME2 = #{deputyDirectorName2,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorDate2 != null">
+                    DEPUTY_DIRECTOR_DATE2 = #{deputyDirectorDate2,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deputyDirector3 != null">
+                    DEPUTY_DIRECTOR3 = #{deputyDirector3,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorName3 != null">
+                    DEPUTY_DIRECTOR_NAME3 = #{deputyDirectorName3,jdbcType=VARCHAR},
+                </if>
+                <if test="deputyDirectorDate3 != null">
+                    DEPUTY_DIRECTOR_DATE3 = #{deputyDirectorDate3,jdbcType=TIMESTAMP},
+                </if>
+                <if test="director != null">
+                    DIRECTOR = #{director,jdbcType=VARCHAR},
+                </if>
+                <if test="directorName != null">
+                    DIRECTOR_NAME = #{directorName,jdbcType=VARCHAR},
+                </if>
+                <if test="directorDate != null">
+                    DIRECTOR_DATE = #{directorDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="signopinion != null">
+                    signOpinion = #{signopinion,jdbcType=VARCHAR},
+                </if>
+                <if test="signdate != null">
+                    signDate = #{signdate,jdbcType=VARCHAR},
+                </if>
+                <if test="signname != null">
+                    signName = #{signname,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.GovernresAdvice">
+        update tb_governres_advice
+        set 
+            DATA_CODE =  #{dataCode,jdbcType=VARCHAR},
+            INITIAL =  #{initial,jdbcType=VARCHAR},
+            INITIAL_DATE =  #{initialDate,jdbcType=TIMESTAMP},
+            DEPARTMENT =  #{department,jdbcType=VARCHAR},
+            DEPARTMENT_NAME =  #{departmentName,jdbcType=VARCHAR},
+            DEPART_DATE =  #{departDate,jdbcType=DATE},
+            OFFICE =  #{office,jdbcType=VARCHAR},
+            OFFICE_NAME =  #{officeName,jdbcType=VARCHAR},
+            OFFICE_DATE =  #{officeDate,jdbcType=TIMESTAMP},
+            DEPUTY_DIRECTOR =  #{deputyDirector,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_NAME =  #{deputyDirectorName,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_DATE =  #{deputyDirectorDate,jdbcType=TIMESTAMP},
+            DEPUTY_DIRECTOR1 =  #{deputyDirector1,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_NAME1 =  #{deputyDirectorName1,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_DATE1 =  #{deputyDirectorDate1,jdbcType=TIMESTAMP},
+            DEPUTY_DIRECTOR2 =  #{deputyDirector2,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_NAME2 =  #{deputyDirectorName2,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_DATE2 =  #{deputyDirectorDate2,jdbcType=TIMESTAMP},
+            DEPUTY_DIRECTOR3 =  #{deputyDirector3,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_NAME3 =  #{deputyDirectorName3,jdbcType=VARCHAR},
+            DEPUTY_DIRECTOR_DATE3 =  #{deputyDirectorDate3,jdbcType=TIMESTAMP},
+            DIRECTOR =  #{director,jdbcType=VARCHAR},
+            DIRECTOR_NAME =  #{directorName,jdbcType=VARCHAR},
+            DIRECTOR_DATE =  #{directorDate,jdbcType=TIMESTAMP},
+            signOpinion =  #{signopinion,jdbcType=VARCHAR},
+            signDate =  #{signdate,jdbcType=VARCHAR},
+            signName =  #{signname,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

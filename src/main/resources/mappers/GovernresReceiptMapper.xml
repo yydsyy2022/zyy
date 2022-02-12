@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.GovernresReceiptMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.GovernresReceipt">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="receivingNum" column="RECEIVING_NUM" jdbcType="VARCHAR"/>
+            <result property="receivingDateOfReceipt" column="RECEIVING_DATE_OF_RECEIPT" jdbcType="TIMESTAMP"/>
+            <result property="receivingTitle" column="RECEIVING_TITLE" jdbcType="VARCHAR"/>
+            <result property="receivingUnitOfCommun" column="RECEIVING_UNIT_OF_COMMUN" jdbcType="VARCHAR"/>
+            <result property="fileNo" column="FILE_NO" jdbcType="VARCHAR"/>
+            <result property="number" column="NUMBER" jdbcType="INTEGER"/>
+            <result property="secretLevel" column="SECRET_LEVEL" jdbcType="VARCHAR"/>
+            <result property="receivingDegreeOfUrgency" column="RECEIVING_DEGREE_OF_URGENCY" jdbcType="VARCHAR"/>
+            <result property="receivingDataStatus" column="RECEIVING_DATA_STATUS" jdbcType="VARCHAR"/>
+            <result property="timeLimit" column="TIME_LIMIT" jdbcType="TIMESTAMP"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+            <result property="reasono" column="REASONO" jdbcType="VARCHAR"/>
+            <result property="reasont" column="REASONT" jdbcType="VARCHAR"/>
+            <result property="reasonh" column="REASONH" jdbcType="VARCHAR"/>
+            <result property="reasonf" column="REASONF" jdbcType="VARCHAR"/>
+            <result property="reasonv" column="REASONV" jdbcType="VARCHAR"/>
+            <result property="reasons" column="REASONS" jdbcType="VARCHAR"/>
+            <result property="nameo" column="NAMEO" jdbcType="VARCHAR"/>
+            <result property="namet" column="NAMET" jdbcType="VARCHAR"/>
+            <result property="nameh" column="NAMEH" jdbcType="VARCHAR"/>
+            <result property="namef" column="NAMEF" jdbcType="VARCHAR"/>
+            <result property="namev" column="NAMEV" jdbcType="VARCHAR"/>
+            <result property="names" column="NAMES" jdbcType="VARCHAR"/>
+            <result property="dateo" column="DATEO" jdbcType="TIMESTAMP"/>
+            <result property="datet" column="DATET" jdbcType="TIMESTAMP"/>
+            <result property="dateh" column="DATEH" jdbcType="TIMESTAMP"/>
+            <result property="datef" column="DATEF" jdbcType="TIMESTAMP"/>
+            <result property="datev" column="DATEV" jdbcType="TIMESTAMP"/>
+            <result property="dates" column="DATES" jdbcType="TIMESTAMP"/>
+            <result property="receiptReason" column="RECEIPT_REASON" jdbcType="VARCHAR"/>
+            <result property="receiptReasonl" column="RECEIPT_REASONL" jdbcType="VARCHAR"/>
+            <result property="receiptReasonk" column="RECEIPT_REASONK" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,RECEIVING_NUM,
+        RECEIVING_DATE_OF_RECEIPT,RECEIVING_TITLE,RECEIVING_UNIT_OF_COMMUN,
+        FILE_NO,NUMBER,SECRET_LEVEL,
+        RECEIVING_DEGREE_OF_URGENCY,RECEIVING_DATA_STATUS,TIME_LIMIT,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt,REASONO,REASONT,
+        REASONH,REASONF,REASONV,
+        REASONS,NAMEO,NAMET,
+        NAMEH,NAMEF,NAMEV,
+        NAMES,DATEO,DATET,
+        DATEH,DATEF,DATEV,
+        DATES,RECEIPT_REASON,RECEIPT_REASONL,
+        RECEIPT_REASONK
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_governres_receipt
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_governres_receipt
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresReceipt" useGeneratedKeys="true">
+        insert into tb_governres_receipt
+        ( itemID,itemCode,RECEIVING_NUM
+        ,RECEIVING_DATE_OF_RECEIPT,RECEIVING_TITLE,RECEIVING_UNIT_OF_COMMUN
+        ,FILE_NO,NUMBER,SECRET_LEVEL
+        ,RECEIVING_DEGREE_OF_URGENCY,RECEIVING_DATA_STATUS,TIME_LIMIT
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt,REASONO,REASONT
+        ,REASONH,REASONF,REASONV
+        ,REASONS,NAMEO,NAMET
+        ,NAMEH,NAMEF,NAMEV
+        ,NAMES,DATEO,DATET
+        ,DATEH,DATEF,DATEV
+        ,DATES,RECEIPT_REASON,RECEIPT_REASONL
+        ,RECEIPT_REASONK)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{receivingNum,jdbcType=VARCHAR}
+        ,#{receivingDateOfReceipt,jdbcType=TIMESTAMP},#{receivingTitle,jdbcType=VARCHAR},#{receivingUnitOfCommun,jdbcType=VARCHAR}
+        ,#{fileNo,jdbcType=VARCHAR},#{number,jdbcType=INTEGER},#{secretLevel,jdbcType=VARCHAR}
+        ,#{receivingDegreeOfUrgency,jdbcType=VARCHAR},#{receivingDataStatus,jdbcType=VARCHAR},#{timeLimit,jdbcType=TIMESTAMP}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP},#{reasono,jdbcType=VARCHAR},#{reasont,jdbcType=VARCHAR}
+        ,#{reasonh,jdbcType=VARCHAR},#{reasonf,jdbcType=VARCHAR},#{reasonv,jdbcType=VARCHAR}
+        ,#{reasons,jdbcType=VARCHAR},#{nameo,jdbcType=VARCHAR},#{namet,jdbcType=VARCHAR}
+        ,#{nameh,jdbcType=VARCHAR},#{namef,jdbcType=VARCHAR},#{namev,jdbcType=VARCHAR}
+        ,#{names,jdbcType=VARCHAR},#{dateo,jdbcType=TIMESTAMP},#{datet,jdbcType=TIMESTAMP}
+        ,#{dateh,jdbcType=TIMESTAMP},#{datef,jdbcType=TIMESTAMP},#{datev,jdbcType=TIMESTAMP}
+        ,#{dates,jdbcType=TIMESTAMP},#{receiptReason,jdbcType=VARCHAR},#{receiptReasonl,jdbcType=VARCHAR}
+        ,#{receiptReasonk,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.GovernresReceipt" useGeneratedKeys="true">
+        insert into tb_governres_receipt
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="receivingNum != null">RECEIVING_NUM,</if>
+                <if test="receivingDateOfReceipt != null">RECEIVING_DATE_OF_RECEIPT,</if>
+                <if test="receivingTitle != null">RECEIVING_TITLE,</if>
+                <if test="receivingUnitOfCommun != null">RECEIVING_UNIT_OF_COMMUN,</if>
+                <if test="fileNo != null">FILE_NO,</if>
+                <if test="number != null">NUMBER,</if>
+                <if test="secretLevel != null">SECRET_LEVEL,</if>
+                <if test="receivingDegreeOfUrgency != null">RECEIVING_DEGREE_OF_URGENCY,</if>
+                <if test="receivingDataStatus != null">RECEIVING_DATA_STATUS,</if>
+                <if test="timeLimit != null">TIME_LIMIT,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+                <if test="reasono != null">REASONO,</if>
+                <if test="reasont != null">REASONT,</if>
+                <if test="reasonh != null">REASONH,</if>
+                <if test="reasonf != null">REASONF,</if>
+                <if test="reasonv != null">REASONV,</if>
+                <if test="reasons != null">REASONS,</if>
+                <if test="nameo != null">NAMEO,</if>
+                <if test="namet != null">NAMET,</if>
+                <if test="nameh != null">NAMEH,</if>
+                <if test="namef != null">NAMEF,</if>
+                <if test="namev != null">NAMEV,</if>
+                <if test="names != null">NAMES,</if>
+                <if test="dateo != null">DATEO,</if>
+                <if test="datet != null">DATET,</if>
+                <if test="dateh != null">DATEH,</if>
+                <if test="datef != null">DATEF,</if>
+                <if test="datev != null">DATEV,</if>
+                <if test="dates != null">DATES,</if>
+                <if test="receiptReason != null">RECEIPT_REASON,</if>
+                <if test="receiptReasonl != null">RECEIPT_REASONL,</if>
+                <if test="receiptReasonk != null">RECEIPT_REASONK,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="receivingNum != null"> #{receivingNum,jdbcType=VARCHAR},</if>
+                <if test="receivingDateOfReceipt != null"> #{receivingDateOfReceipt,jdbcType=TIMESTAMP},</if>
+                <if test="receivingTitle != null"> #{receivingTitle,jdbcType=VARCHAR},</if>
+                <if test="receivingUnitOfCommun != null"> #{receivingUnitOfCommun,jdbcType=VARCHAR},</if>
+                <if test="fileNo != null"> #{fileNo,jdbcType=VARCHAR},</if>
+                <if test="number != null"> #{number,jdbcType=INTEGER},</if>
+                <if test="secretLevel != null"> #{secretLevel,jdbcType=VARCHAR},</if>
+                <if test="receivingDegreeOfUrgency != null"> #{receivingDegreeOfUrgency,jdbcType=VARCHAR},</if>
+                <if test="receivingDataStatus != null"> #{receivingDataStatus,jdbcType=VARCHAR},</if>
+                <if test="timeLimit != null"> #{timeLimit,jdbcType=TIMESTAMP},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+                <if test="reasono != null"> #{reasono,jdbcType=VARCHAR},</if>
+                <if test="reasont != null"> #{reasont,jdbcType=VARCHAR},</if>
+                <if test="reasonh != null"> #{reasonh,jdbcType=VARCHAR},</if>
+                <if test="reasonf != null"> #{reasonf,jdbcType=VARCHAR},</if>
+                <if test="reasonv != null"> #{reasonv,jdbcType=VARCHAR},</if>
+                <if test="reasons != null"> #{reasons,jdbcType=VARCHAR},</if>
+                <if test="nameo != null"> #{nameo,jdbcType=VARCHAR},</if>
+                <if test="namet != null"> #{namet,jdbcType=VARCHAR},</if>
+                <if test="nameh != null"> #{nameh,jdbcType=VARCHAR},</if>
+                <if test="namef != null"> #{namef,jdbcType=VARCHAR},</if>
+                <if test="namev != null"> #{namev,jdbcType=VARCHAR},</if>
+                <if test="names != null"> #{names,jdbcType=VARCHAR},</if>
+                <if test="dateo != null"> #{dateo,jdbcType=TIMESTAMP},</if>
+                <if test="datet != null"> #{datet,jdbcType=TIMESTAMP},</if>
+                <if test="dateh != null"> #{dateh,jdbcType=TIMESTAMP},</if>
+                <if test="datef != null"> #{datef,jdbcType=TIMESTAMP},</if>
+                <if test="datev != null"> #{datev,jdbcType=TIMESTAMP},</if>
+                <if test="dates != null"> #{dates,jdbcType=TIMESTAMP},</if>
+                <if test="receiptReason != null"> #{receiptReason,jdbcType=VARCHAR},</if>
+                <if test="receiptReasonl != null"> #{receiptReasonl,jdbcType=VARCHAR},</if>
+                <if test="receiptReasonk != null"> #{receiptReasonk,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.GovernresReceipt">
+        update tb_governres_receipt
+        <set>
+                <if test="receivingNum != null">
+                    RECEIVING_NUM = #{receivingNum,jdbcType=VARCHAR},
+                </if>
+                <if test="receivingDateOfReceipt != null">
+                    RECEIVING_DATE_OF_RECEIPT = #{receivingDateOfReceipt,jdbcType=TIMESTAMP},
+                </if>
+                <if test="receivingTitle != null">
+                    RECEIVING_TITLE = #{receivingTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="receivingUnitOfCommun != null">
+                    RECEIVING_UNIT_OF_COMMUN = #{receivingUnitOfCommun,jdbcType=VARCHAR},
+                </if>
+                <if test="fileNo != null">
+                    FILE_NO = #{fileNo,jdbcType=VARCHAR},
+                </if>
+                <if test="number != null">
+                    NUMBER = #{number,jdbcType=INTEGER},
+                </if>
+                <if test="secretLevel != null">
+                    SECRET_LEVEL = #{secretLevel,jdbcType=VARCHAR},
+                </if>
+                <if test="receivingDegreeOfUrgency != null">
+                    RECEIVING_DEGREE_OF_URGENCY = #{receivingDegreeOfUrgency,jdbcType=VARCHAR},
+                </if>
+                <if test="receivingDataStatus != null">
+                    RECEIVING_DATA_STATUS = #{receivingDataStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="timeLimit != null">
+                    TIME_LIMIT = #{timeLimit,jdbcType=TIMESTAMP},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="reasono != null">
+                    REASONO = #{reasono,jdbcType=VARCHAR},
+                </if>
+                <if test="reasont != null">
+                    REASONT = #{reasont,jdbcType=VARCHAR},
+                </if>
+                <if test="reasonh != null">
+                    REASONH = #{reasonh,jdbcType=VARCHAR},
+                </if>
+                <if test="reasonf != null">
+                    REASONF = #{reasonf,jdbcType=VARCHAR},
+                </if>
+                <if test="reasonv != null">
+                    REASONV = #{reasonv,jdbcType=VARCHAR},
+                </if>
+                <if test="reasons != null">
+                    REASONS = #{reasons,jdbcType=VARCHAR},
+                </if>
+                <if test="nameo != null">
+                    NAMEO = #{nameo,jdbcType=VARCHAR},
+                </if>
+                <if test="namet != null">
+                    NAMET = #{namet,jdbcType=VARCHAR},
+                </if>
+                <if test="nameh != null">
+                    NAMEH = #{nameh,jdbcType=VARCHAR},
+                </if>
+                <if test="namef != null">
+                    NAMEF = #{namef,jdbcType=VARCHAR},
+                </if>
+                <if test="namev != null">
+                    NAMEV = #{namev,jdbcType=VARCHAR},
+                </if>
+                <if test="names != null">
+                    NAMES = #{names,jdbcType=VARCHAR},
+                </if>
+                <if test="dateo != null">
+                    DATEO = #{dateo,jdbcType=TIMESTAMP},
+                </if>
+                <if test="datet != null">
+                    DATET = #{datet,jdbcType=TIMESTAMP},
+                </if>
+                <if test="dateh != null">
+                    DATEH = #{dateh,jdbcType=TIMESTAMP},
+                </if>
+                <if test="datef != null">
+                    DATEF = #{datef,jdbcType=TIMESTAMP},
+                </if>
+                <if test="datev != null">
+                    DATEV = #{datev,jdbcType=TIMESTAMP},
+                </if>
+                <if test="dates != null">
+                    DATES = #{dates,jdbcType=TIMESTAMP},
+                </if>
+                <if test="receiptReason != null">
+                    RECEIPT_REASON = #{receiptReason,jdbcType=VARCHAR},
+                </if>
+                <if test="receiptReasonl != null">
+                    RECEIPT_REASONL = #{receiptReasonl,jdbcType=VARCHAR},
+                </if>
+                <if test="receiptReasonk != null">
+                    RECEIPT_REASONK = #{receiptReasonk,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.GovernresReceipt">
+        update tb_governres_receipt
+        set 
+            RECEIVING_NUM =  #{receivingNum,jdbcType=VARCHAR},
+            RECEIVING_DATE_OF_RECEIPT =  #{receivingDateOfReceipt,jdbcType=TIMESTAMP},
+            RECEIVING_TITLE =  #{receivingTitle,jdbcType=VARCHAR},
+            RECEIVING_UNIT_OF_COMMUN =  #{receivingUnitOfCommun,jdbcType=VARCHAR},
+            FILE_NO =  #{fileNo,jdbcType=VARCHAR},
+            NUMBER =  #{number,jdbcType=INTEGER},
+            SECRET_LEVEL =  #{secretLevel,jdbcType=VARCHAR},
+            RECEIVING_DEGREE_OF_URGENCY =  #{receivingDegreeOfUrgency,jdbcType=VARCHAR},
+            RECEIVING_DATA_STATUS =  #{receivingDataStatus,jdbcType=VARCHAR},
+            TIME_LIMIT =  #{timeLimit,jdbcType=TIMESTAMP},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP},
+            REASONO =  #{reasono,jdbcType=VARCHAR},
+            REASONT =  #{reasont,jdbcType=VARCHAR},
+            REASONH =  #{reasonh,jdbcType=VARCHAR},
+            REASONF =  #{reasonf,jdbcType=VARCHAR},
+            REASONV =  #{reasonv,jdbcType=VARCHAR},
+            REASONS =  #{reasons,jdbcType=VARCHAR},
+            NAMEO =  #{nameo,jdbcType=VARCHAR},
+            NAMET =  #{namet,jdbcType=VARCHAR},
+            NAMEH =  #{nameh,jdbcType=VARCHAR},
+            NAMEF =  #{namef,jdbcType=VARCHAR},
+            NAMEV =  #{namev,jdbcType=VARCHAR},
+            NAMES =  #{names,jdbcType=VARCHAR},
+            DATEO =  #{dateo,jdbcType=TIMESTAMP},
+            DATET =  #{datet,jdbcType=TIMESTAMP},
+            DATEH =  #{dateh,jdbcType=TIMESTAMP},
+            DATEF =  #{datef,jdbcType=TIMESTAMP},
+            DATEV =  #{datev,jdbcType=TIMESTAMP},
+            DATES =  #{dates,jdbcType=TIMESTAMP},
+            RECEIPT_REASON =  #{receiptReason,jdbcType=VARCHAR},
+            RECEIPT_REASONL =  #{receiptReasonl,jdbcType=VARCHAR},
+            RECEIPT_REASONK =  #{receiptReasonk,jdbcType=VARCHAR}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproDataMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproData">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="dataTitle" column="DATA_TITLE" jdbcType="VARCHAR"/>
+            <result property="dataLocation" column="DATA_LOCATION" jdbcType="VARCHAR"/>
+            <result property="dataAuthor" column="DATA_AUTHOR" jdbcType="VARCHAR"/>
+            <result property="dataSource" column="DATA_SOURCE" jdbcType="VARCHAR"/>
+            <result property="dataFileType" column="DATA_FILE_TYPE" jdbcType="VARCHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="dataContent" column="DATA_CONTENT" jdbcType="VARCHAR"/>
+            <result property="dataDelayedRelease" column="DATA_DELAYED_RELEASE" jdbcType="TIMESTAMP"/>
+            <result property="dataStatus" column="DATA_STATUS" jdbcType="VARCHAR"/>
+            <result property="dataType" column="DATA_TYPE" jdbcType="VARCHAR"/>
+            <result property="releaseOrNot" column="RELEASE_OR_NOT" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,DATA_TITLE,
+        DATA_LOCATION,DATA_AUTHOR,DATA_SOURCE,
+        DATA_FILE_TYPE,VISIT_NUM,DATA_CONTENT,
+        DATA_DELAYED_RELEASE,DATA_STATUS,DATA_TYPE,
+        RELEASE_OR_NOT,CREATER,itemCreateAt,
+        UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_data
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_data
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproData" useGeneratedKeys="true">
+        insert into tb_culpro_data
+        ( itemID,itemCode,DATA_TITLE
+        ,DATA_LOCATION,DATA_AUTHOR,DATA_SOURCE
+        ,DATA_FILE_TYPE,VISIT_NUM,DATA_CONTENT
+        ,DATA_DELAYED_RELEASE,DATA_STATUS,DATA_TYPE
+        ,RELEASE_OR_NOT,CREATER,itemCreateAt
+        ,UPDATER,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{dataTitle,jdbcType=VARCHAR}
+        ,#{dataLocation,jdbcType=VARCHAR},#{dataAuthor,jdbcType=VARCHAR},#{dataSource,jdbcType=VARCHAR}
+        ,#{dataFileType,jdbcType=VARCHAR},#{visitNum,jdbcType=INTEGER},#{dataContent,jdbcType=VARCHAR}
+        ,#{dataDelayedRelease,jdbcType=TIMESTAMP},#{dataStatus,jdbcType=VARCHAR},#{dataType,jdbcType=VARCHAR}
+        ,#{releaseOrNot,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP}
+        ,#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproData" useGeneratedKeys="true">
+        insert into tb_culpro_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="dataTitle != null">DATA_TITLE,</if>
+                <if test="dataLocation != null">DATA_LOCATION,</if>
+                <if test="dataAuthor != null">DATA_AUTHOR,</if>
+                <if test="dataSource != null">DATA_SOURCE,</if>
+                <if test="dataFileType != null">DATA_FILE_TYPE,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="dataContent != null">DATA_CONTENT,</if>
+                <if test="dataDelayedRelease != null">DATA_DELAYED_RELEASE,</if>
+                <if test="dataStatus != null">DATA_STATUS,</if>
+                <if test="dataType != null">DATA_TYPE,</if>
+                <if test="releaseOrNot != null">RELEASE_OR_NOT,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="dataTitle != null"> #{dataTitle,jdbcType=VARCHAR},</if>
+                <if test="dataLocation != null"> #{dataLocation,jdbcType=VARCHAR},</if>
+                <if test="dataAuthor != null"> #{dataAuthor,jdbcType=VARCHAR},</if>
+                <if test="dataSource != null"> #{dataSource,jdbcType=VARCHAR},</if>
+                <if test="dataFileType != null"> #{dataFileType,jdbcType=VARCHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="dataContent != null"> #{dataContent,jdbcType=VARCHAR},</if>
+                <if test="dataDelayedRelease != null"> #{dataDelayedRelease,jdbcType=TIMESTAMP},</if>
+                <if test="dataStatus != null"> #{dataStatus,jdbcType=VARCHAR},</if>
+                <if test="dataType != null"> #{dataType,jdbcType=VARCHAR},</if>
+                <if test="releaseOrNot != null"> #{releaseOrNot,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproData">
+        update tb_culpro_data
+        <set>
+                <if test="dataTitle != null">
+                    DATA_TITLE = #{dataTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="dataLocation != null">
+                    DATA_LOCATION = #{dataLocation,jdbcType=VARCHAR},
+                </if>
+                <if test="dataAuthor != null">
+                    DATA_AUTHOR = #{dataAuthor,jdbcType=VARCHAR},
+                </if>
+                <if test="dataSource != null">
+                    DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+                </if>
+                <if test="dataFileType != null">
+                    DATA_FILE_TYPE = #{dataFileType,jdbcType=VARCHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="dataContent != null">
+                    DATA_CONTENT = #{dataContent,jdbcType=VARCHAR},
+                </if>
+                <if test="dataDelayedRelease != null">
+                    DATA_DELAYED_RELEASE = #{dataDelayedRelease,jdbcType=TIMESTAMP},
+                </if>
+                <if test="dataStatus != null">
+                    DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="dataType != null">
+                    DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+                </if>
+                <if test="releaseOrNot != null">
+                    RELEASE_OR_NOT = #{releaseOrNot,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproData">
+        update tb_culpro_data
+        set 
+            DATA_TITLE =  #{dataTitle,jdbcType=VARCHAR},
+            DATA_LOCATION =  #{dataLocation,jdbcType=VARCHAR},
+            DATA_AUTHOR =  #{dataAuthor,jdbcType=VARCHAR},
+            DATA_SOURCE =  #{dataSource,jdbcType=VARCHAR},
+            DATA_FILE_TYPE =  #{dataFileType,jdbcType=VARCHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            DATA_CONTENT =  #{dataContent,jdbcType=VARCHAR},
+            DATA_DELAYED_RELEASE =  #{dataDelayedRelease,jdbcType=TIMESTAMP},
+            DATA_STATUS =  #{dataStatus,jdbcType=VARCHAR},
+            DATA_TYPE =  #{dataType,jdbcType=VARCHAR},
+            RELEASE_OR_NOT =  #{releaseOrNot,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

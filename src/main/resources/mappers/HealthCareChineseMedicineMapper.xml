@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.HealthCareChineseMedicineMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.HealthCareChineseMedicine">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="chineseMedicineName" column="CHINESE_MEDICINE_NAME" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineType" column="CHINESE_MEDICINE_TYPE" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineAlias" column="CHINESE_MEDICINE_ALIAS" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineSource" column="CHINESE_MEDICINE_SOURCE" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineHarvesting" column="CHINESE_MEDICINE_HARVESTING" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineTaste" column="CHINESE_MEDICINE_TASTE" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineMerTro" column="CHINESE_MEDICINE_MER_TRO" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineEffect" column="CHINESE_MEDICINE_EFFECT" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineUsage" column="CHINESE_MEDICINE_USAGE" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineStatus" column="CHINESE_MEDICINE_STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,CHINESE_MEDICINE_NAME,
+        CHINESE_MEDICINE_TYPE,CHINESE_MEDICINE_ALIAS,CHINESE_MEDICINE_SOURCE,
+        CHINESE_MEDICINE_HARVESTING,CHINESE_MEDICINE_TASTE,CHINESE_MEDICINE_MER_TRO,
+        CHINESE_MEDICINE_EFFECT,CHINESE_MEDICINE_USAGE,CHINESE_MEDICINE_STATUS,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_health_care_chinese_medicine
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_health_care_chinese_medicine
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.HealthCareChineseMedicine" useGeneratedKeys="true">
+        insert into tb_health_care_chinese_medicine
+        ( itemID,itemCode,CHINESE_MEDICINE_NAME
+        ,CHINESE_MEDICINE_TYPE,CHINESE_MEDICINE_ALIAS,CHINESE_MEDICINE_SOURCE
+        ,CHINESE_MEDICINE_HARVESTING,CHINESE_MEDICINE_TASTE,CHINESE_MEDICINE_MER_TRO
+        ,CHINESE_MEDICINE_EFFECT,CHINESE_MEDICINE_USAGE,CHINESE_MEDICINE_STATUS
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{chineseMedicineName,jdbcType=VARCHAR}
+        ,#{chineseMedicineType,jdbcType=VARCHAR},#{chineseMedicineAlias,jdbcType=VARCHAR},#{chineseMedicineSource,jdbcType=VARCHAR}
+        ,#{chineseMedicineHarvesting,jdbcType=VARCHAR},#{chineseMedicineTaste,jdbcType=VARCHAR},#{chineseMedicineMerTro,jdbcType=VARCHAR}
+        ,#{chineseMedicineEffect,jdbcType=VARCHAR},#{chineseMedicineUsage,jdbcType=VARCHAR},#{chineseMedicineStatus,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.HealthCareChineseMedicine" useGeneratedKeys="true">
+        insert into tb_health_care_chinese_medicine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="chineseMedicineName != null">CHINESE_MEDICINE_NAME,</if>
+                <if test="chineseMedicineType != null">CHINESE_MEDICINE_TYPE,</if>
+                <if test="chineseMedicineAlias != null">CHINESE_MEDICINE_ALIAS,</if>
+                <if test="chineseMedicineSource != null">CHINESE_MEDICINE_SOURCE,</if>
+                <if test="chineseMedicineHarvesting != null">CHINESE_MEDICINE_HARVESTING,</if>
+                <if test="chineseMedicineTaste != null">CHINESE_MEDICINE_TASTE,</if>
+                <if test="chineseMedicineMerTro != null">CHINESE_MEDICINE_MER_TRO,</if>
+                <if test="chineseMedicineEffect != null">CHINESE_MEDICINE_EFFECT,</if>
+                <if test="chineseMedicineUsage != null">CHINESE_MEDICINE_USAGE,</if>
+                <if test="chineseMedicineStatus != null">CHINESE_MEDICINE_STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="chineseMedicineName != null"> #{chineseMedicineName,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineType != null"> #{chineseMedicineType,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineAlias != null"> #{chineseMedicineAlias,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineSource != null"> #{chineseMedicineSource,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineHarvesting != null"> #{chineseMedicineHarvesting,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineTaste != null"> #{chineseMedicineTaste,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineMerTro != null"> #{chineseMedicineMerTro,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineEffect != null"> #{chineseMedicineEffect,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineUsage != null"> #{chineseMedicineUsage,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineStatus != null"> #{chineseMedicineStatus,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.HealthCareChineseMedicine">
+        update tb_health_care_chinese_medicine
+        <set>
+                <if test="chineseMedicineName != null">
+                    CHINESE_MEDICINE_NAME = #{chineseMedicineName,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineType != null">
+                    CHINESE_MEDICINE_TYPE = #{chineseMedicineType,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineAlias != null">
+                    CHINESE_MEDICINE_ALIAS = #{chineseMedicineAlias,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineSource != null">
+                    CHINESE_MEDICINE_SOURCE = #{chineseMedicineSource,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineHarvesting != null">
+                    CHINESE_MEDICINE_HARVESTING = #{chineseMedicineHarvesting,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineTaste != null">
+                    CHINESE_MEDICINE_TASTE = #{chineseMedicineTaste,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineMerTro != null">
+                    CHINESE_MEDICINE_MER_TRO = #{chineseMedicineMerTro,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineEffect != null">
+                    CHINESE_MEDICINE_EFFECT = #{chineseMedicineEffect,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineUsage != null">
+                    CHINESE_MEDICINE_USAGE = #{chineseMedicineUsage,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineStatus != null">
+                    CHINESE_MEDICINE_STATUS = #{chineseMedicineStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.HealthCareChineseMedicine">
+        update tb_health_care_chinese_medicine
+        set 
+            CHINESE_MEDICINE_NAME =  #{chineseMedicineName,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_TYPE =  #{chineseMedicineType,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_ALIAS =  #{chineseMedicineAlias,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_SOURCE =  #{chineseMedicineSource,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_HARVESTING =  #{chineseMedicineHarvesting,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_TASTE =  #{chineseMedicineTaste,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_MER_TRO =  #{chineseMedicineMerTro,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_EFFECT =  #{chineseMedicineEffect,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_USAGE =  #{chineseMedicineUsage,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_STATUS =  #{chineseMedicineStatus,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

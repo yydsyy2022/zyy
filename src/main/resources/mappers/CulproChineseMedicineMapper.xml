@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.CulproChineseMedicineMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.CulproChineseMedicine">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="chineseMedicineName" column="CHINESE_MEDICINE_NAME" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineType" column="CHINESE_MEDICINE_TYPE" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineTitle" column="CHINESE_MEDICINE_TITLE" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="DEPT_CODE" jdbcType="VARCHAR"/>
+            <result property="hospCode" column="HOSP_CODE" jdbcType="VARCHAR"/>
+            <result property="visitTime" column="VISIT_TIME" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="expertBriefIntroduce" column="EXPERT_BRIEF_INTRODUCE" jdbcType="VARCHAR"/>
+            <result property="expertIntroduce" column="EXPERT_INTRODUCE" jdbcType="VARCHAR"/>
+            <result property="mainVisit" column="MAIN_VISIT" jdbcType="VARCHAR"/>
+            <result property="medicineRecords" column="MEDICINE_RECORDS" jdbcType="VARCHAR"/>
+            <result property="chineseMedicineStatus" column="CHINESE_MEDICINE_STATUS" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,CHINESE_MEDICINE_NAME,
+        CHINESE_MEDICINE_TYPE,CHINESE_MEDICINE_TITLE,DEPT_CODE,
+        HOSP_CODE,VISIT_TIME,PHONE,
+        EXPERT_BRIEF_INTRODUCE,EXPERT_INTRODUCE,MAIN_VISIT,
+        MEDICINE_RECORDS,CHINESE_MEDICINE_STATUS,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_culpro_chinese_medicine
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_culpro_chinese_medicine
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproChineseMedicine" useGeneratedKeys="true">
+        insert into tb_culpro_chinese_medicine
+        ( itemID,itemCode,CHINESE_MEDICINE_NAME
+        ,CHINESE_MEDICINE_TYPE,CHINESE_MEDICINE_TITLE,DEPT_CODE
+        ,HOSP_CODE,VISIT_TIME,PHONE
+        ,EXPERT_BRIEF_INTRODUCE,EXPERT_INTRODUCE,MAIN_VISIT
+        ,MEDICINE_RECORDS,CHINESE_MEDICINE_STATUS,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{chineseMedicineName,jdbcType=VARCHAR}
+        ,#{chineseMedicineType,jdbcType=VARCHAR},#{chineseMedicineTitle,jdbcType=VARCHAR},#{deptCode,jdbcType=VARCHAR}
+        ,#{hospCode,jdbcType=VARCHAR},#{visitTime,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
+        ,#{expertBriefIntroduce,jdbcType=VARCHAR},#{expertIntroduce,jdbcType=VARCHAR},#{mainVisit,jdbcType=VARCHAR}
+        ,#{medicineRecords,jdbcType=VARCHAR},#{chineseMedicineStatus,jdbcType=VARCHAR},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproChineseMedicine" useGeneratedKeys="true">
+        insert into tb_culpro_chinese_medicine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="chineseMedicineName != null">CHINESE_MEDICINE_NAME,</if>
+                <if test="chineseMedicineType != null">CHINESE_MEDICINE_TYPE,</if>
+                <if test="chineseMedicineTitle != null">CHINESE_MEDICINE_TITLE,</if>
+                <if test="deptCode != null">DEPT_CODE,</if>
+                <if test="hospCode != null">HOSP_CODE,</if>
+                <if test="visitTime != null">VISIT_TIME,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="expertBriefIntroduce != null">EXPERT_BRIEF_INTRODUCE,</if>
+                <if test="expertIntroduce != null">EXPERT_INTRODUCE,</if>
+                <if test="mainVisit != null">MAIN_VISIT,</if>
+                <if test="medicineRecords != null">MEDICINE_RECORDS,</if>
+                <if test="chineseMedicineStatus != null">CHINESE_MEDICINE_STATUS,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="chineseMedicineName != null"> #{chineseMedicineName,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineType != null"> #{chineseMedicineType,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineTitle != null"> #{chineseMedicineTitle,jdbcType=VARCHAR},</if>
+                <if test="deptCode != null"> #{deptCode,jdbcType=VARCHAR},</if>
+                <if test="hospCode != null"> #{hospCode,jdbcType=VARCHAR},</if>
+                <if test="visitTime != null"> #{visitTime,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="expertBriefIntroduce != null"> #{expertBriefIntroduce,jdbcType=VARCHAR},</if>
+                <if test="expertIntroduce != null"> #{expertIntroduce,jdbcType=VARCHAR},</if>
+                <if test="mainVisit != null"> #{mainVisit,jdbcType=VARCHAR},</if>
+                <if test="medicineRecords != null"> #{medicineRecords,jdbcType=VARCHAR},</if>
+                <if test="chineseMedicineStatus != null"> #{chineseMedicineStatus,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.CulproChineseMedicine">
+        update tb_culpro_chinese_medicine
+        <set>
+                <if test="chineseMedicineName != null">
+                    CHINESE_MEDICINE_NAME = #{chineseMedicineName,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineType != null">
+                    CHINESE_MEDICINE_TYPE = #{chineseMedicineType,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineTitle != null">
+                    CHINESE_MEDICINE_TITLE = #{chineseMedicineTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="deptCode != null">
+                    DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+                </if>
+                <if test="hospCode != null">
+                    HOSP_CODE = #{hospCode,jdbcType=VARCHAR},
+                </if>
+                <if test="visitTime != null">
+                    VISIT_TIME = #{visitTime,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="expertBriefIntroduce != null">
+                    EXPERT_BRIEF_INTRODUCE = #{expertBriefIntroduce,jdbcType=VARCHAR},
+                </if>
+                <if test="expertIntroduce != null">
+                    EXPERT_INTRODUCE = #{expertIntroduce,jdbcType=VARCHAR},
+                </if>
+                <if test="mainVisit != null">
+                    MAIN_VISIT = #{mainVisit,jdbcType=VARCHAR},
+                </if>
+                <if test="medicineRecords != null">
+                    MEDICINE_RECORDS = #{medicineRecords,jdbcType=VARCHAR},
+                </if>
+                <if test="chineseMedicineStatus != null">
+                    CHINESE_MEDICINE_STATUS = #{chineseMedicineStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproChineseMedicine">
+        update tb_culpro_chinese_medicine
+        set 
+            CHINESE_MEDICINE_NAME =  #{chineseMedicineName,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_TYPE =  #{chineseMedicineType,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_TITLE =  #{chineseMedicineTitle,jdbcType=VARCHAR},
+            DEPT_CODE =  #{deptCode,jdbcType=VARCHAR},
+            HOSP_CODE =  #{hospCode,jdbcType=VARCHAR},
+            VISIT_TIME =  #{visitTime,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            EXPERT_BRIEF_INTRODUCE =  #{expertBriefIntroduce,jdbcType=VARCHAR},
+            EXPERT_INTRODUCE =  #{expertIntroduce,jdbcType=VARCHAR},
+            MAIN_VISIT =  #{mainVisit,jdbcType=VARCHAR},
+            MEDICINE_RECORDS =  #{medicineRecords,jdbcType=VARCHAR},
+            CHINESE_MEDICINE_STATUS =  #{chineseMedicineStatus,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

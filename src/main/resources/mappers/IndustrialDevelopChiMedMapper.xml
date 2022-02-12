@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.IndustrialDevelopChiMedMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.IndustrialDevelopChiMed">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="areaCoverd" column="AREA_COVERD" jdbcType="VARCHAR"/>
+            <result property="salesCategory" column="SALES_CATEGORY" jdbcType="VARCHAR"/>
+            <result property="processingType" column="PROCESSING_TYPE" jdbcType="VARCHAR"/>
+            <result property="peoduceType" column="PEODUCE_TYPE" jdbcType="VARCHAR"/>
+            <result property="plantType" column="PLANT_TYPE" jdbcType="VARCHAR"/>
+            <result property="peoduceDrug" column="PEODUCE_DRUG" jdbcType="VARCHAR"/>
+            <result property="sellingDrugs" column="SELLING_DRUGS" jdbcType="VARCHAR"/>
+            <result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="addressPro" column="ADDRESS_PRO" jdbcType="VARCHAR"/>
+            <result property="addressCity" column="ADDRESS_CITY" jdbcType="VARCHAR"/>
+            <result property="addressCountry" column="ADDRESS_COUNTRY" jdbcType="VARCHAR"/>
+            <result property="address" column="ADDRESS" jdbcType="VARCHAR"/>
+            <result property="intruduce" column="INTRUDUCE" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="reason" column="REASON" jdbcType="VARCHAR"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+            <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,NAME,
+        AREA_COVERD,SALES_CATEGORY,PROCESSING_TYPE,
+        PEODUCE_TYPE,PLANT_TYPE,PEODUCE_DRUG,
+        SELLING_DRUGS,CONTACTS,PHONE,
+        ADDRESS_PRO,ADDRESS_CITY,ADDRESS_COUNTRY,
+        ADDRESS,INTRUDUCE,STATUS,
+        REASON,ORG_CODE,TYPE,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_chi_med
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_industrial_develop_chi_med
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
+        insert into tb_industrial_develop_chi_med
+        ( itemID,itemCode,NAME
+        ,AREA_COVERD,SALES_CATEGORY,PROCESSING_TYPE
+        ,PEODUCE_TYPE,PLANT_TYPE,PEODUCE_DRUG
+        ,SELLING_DRUGS,CONTACTS,PHONE
+        ,ADDRESS_PRO,ADDRESS_CITY,ADDRESS_COUNTRY
+        ,ADDRESS,INTRUDUCE,STATUS
+        ,REASON,ORG_CODE,TYPE
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{name,jdbcType=VARCHAR}
+        ,#{areaCoverd,jdbcType=VARCHAR},#{salesCategory,jdbcType=VARCHAR},#{processingType,jdbcType=VARCHAR}
+        ,#{peoduceType,jdbcType=VARCHAR},#{plantType,jdbcType=VARCHAR},#{peoduceDrug,jdbcType=VARCHAR}
+        ,#{sellingDrugs,jdbcType=VARCHAR},#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
+        ,#{addressPro,jdbcType=VARCHAR},#{addressCity,jdbcType=VARCHAR},#{addressCountry,jdbcType=VARCHAR}
+        ,#{address,jdbcType=VARCHAR},#{intruduce,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{reason,jdbcType=VARCHAR},#{orgCode,jdbcType=CHAR},#{type,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
+        insert into tb_industrial_develop_chi_med
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="name != null">NAME,</if>
+                <if test="areaCoverd != null">AREA_COVERD,</if>
+                <if test="salesCategory != null">SALES_CATEGORY,</if>
+                <if test="processingType != null">PROCESSING_TYPE,</if>
+                <if test="peoduceType != null">PEODUCE_TYPE,</if>
+                <if test="plantType != null">PLANT_TYPE,</if>
+                <if test="peoduceDrug != null">PEODUCE_DRUG,</if>
+                <if test="sellingDrugs != null">SELLING_DRUGS,</if>
+                <if test="contacts != null">CONTACTS,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="addressPro != null">ADDRESS_PRO,</if>
+                <if test="addressCity != null">ADDRESS_CITY,</if>
+                <if test="addressCountry != null">ADDRESS_COUNTRY,</if>
+                <if test="address != null">ADDRESS,</if>
+                <if test="intruduce != null">INTRUDUCE,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="reason != null">REASON,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="type != null">TYPE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="name != null"> #{name,jdbcType=VARCHAR},</if>
+                <if test="areaCoverd != null"> #{areaCoverd,jdbcType=VARCHAR},</if>
+                <if test="salesCategory != null"> #{salesCategory,jdbcType=VARCHAR},</if>
+                <if test="processingType != null"> #{processingType,jdbcType=VARCHAR},</if>
+                <if test="peoduceType != null"> #{peoduceType,jdbcType=VARCHAR},</if>
+                <if test="plantType != null"> #{plantType,jdbcType=VARCHAR},</if>
+                <if test="peoduceDrug != null"> #{peoduceDrug,jdbcType=VARCHAR},</if>
+                <if test="sellingDrugs != null"> #{sellingDrugs,jdbcType=VARCHAR},</if>
+                <if test="contacts != null"> #{contacts,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="addressPro != null"> #{addressPro,jdbcType=VARCHAR},</if>
+                <if test="addressCity != null"> #{addressCity,jdbcType=VARCHAR},</if>
+                <if test="addressCountry != null"> #{addressCountry,jdbcType=VARCHAR},</if>
+                <if test="address != null"> #{address,jdbcType=VARCHAR},</if>
+                <if test="intruduce != null"> #{intruduce,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="reason != null"> #{reason,jdbcType=VARCHAR},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=CHAR},</if>
+                <if test="type != null"> #{type,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed">
+        update tb_industrial_develop_chi_med
+        <set>
+                <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="areaCoverd != null">
+                    AREA_COVERD = #{areaCoverd,jdbcType=VARCHAR},
+                </if>
+                <if test="salesCategory != null">
+                    SALES_CATEGORY = #{salesCategory,jdbcType=VARCHAR},
+                </if>
+                <if test="processingType != null">
+                    PROCESSING_TYPE = #{processingType,jdbcType=VARCHAR},
+                </if>
+                <if test="peoduceType != null">
+                    PEODUCE_TYPE = #{peoduceType,jdbcType=VARCHAR},
+                </if>
+                <if test="plantType != null">
+                    PLANT_TYPE = #{plantType,jdbcType=VARCHAR},
+                </if>
+                <if test="peoduceDrug != null">
+                    PEODUCE_DRUG = #{peoduceDrug,jdbcType=VARCHAR},
+                </if>
+                <if test="sellingDrugs != null">
+                    SELLING_DRUGS = #{sellingDrugs,jdbcType=VARCHAR},
+                </if>
+                <if test="contacts != null">
+                    CONTACTS = #{contacts,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="addressPro != null">
+                    ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+                </if>
+                <if test="addressCity != null">
+                    ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+                </if>
+                <if test="addressCountry != null">
+                    ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+                </if>
+                <if test="address != null">
+                    ADDRESS = #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="intruduce != null">
+                    INTRUDUCE = #{intruduce,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="reason != null">
+                    REASON = #{reason,jdbcType=VARCHAR},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=CHAR},
+                </if>
+                <if test="type != null">
+                    TYPE = #{type,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed">
+        update tb_industrial_develop_chi_med
+        set 
+            NAME =  #{name,jdbcType=VARCHAR},
+            AREA_COVERD =  #{areaCoverd,jdbcType=VARCHAR},
+            SALES_CATEGORY =  #{salesCategory,jdbcType=VARCHAR},
+            PROCESSING_TYPE =  #{processingType,jdbcType=VARCHAR},
+            PEODUCE_TYPE =  #{peoduceType,jdbcType=VARCHAR},
+            PLANT_TYPE =  #{plantType,jdbcType=VARCHAR},
+            PEODUCE_DRUG =  #{peoduceDrug,jdbcType=VARCHAR},
+            SELLING_DRUGS =  #{sellingDrugs,jdbcType=VARCHAR},
+            CONTACTS =  #{contacts,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            ADDRESS_PRO =  #{addressPro,jdbcType=VARCHAR},
+            ADDRESS_CITY =  #{addressCity,jdbcType=VARCHAR},
+            ADDRESS_COUNTRY =  #{addressCountry,jdbcType=VARCHAR},
+            ADDRESS =  #{address,jdbcType=VARCHAR},
+            INTRUDUCE =  #{intruduce,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            REASON =  #{reason,jdbcType=VARCHAR},
+            ORG_CODE =  #{orgCode,jdbcType=CHAR},
+            TYPE =  #{type,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

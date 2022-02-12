@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.IndustrialDevelopTecSerOrgMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="areaCoverd" column="AREA_COVERD" jdbcType="VARCHAR"/>
+            <result property="specialService" column="SPECIAL_SERVICE" jdbcType="VARCHAR"/>
+            <result property="projectName" column="PROJECT_NAME" jdbcType="VARCHAR"/>
+            <result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+            <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+            <result property="addressPro" column="ADDRESS_PRO" jdbcType="VARCHAR"/>
+            <result property="addressCity" column="ADDRESS_CITY" jdbcType="VARCHAR"/>
+            <result property="addressCountry" column="ADDRESS_COUNTRY" jdbcType="VARCHAR"/>
+            <result property="address" column="ADDRESS" jdbcType="VARCHAR"/>
+            <result property="onlineAddress" column="ONLINE_ADDRESS" jdbcType="VARCHAR"/>
+            <result property="intruduce" column="INTRUDUCE" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="reason" column="REASON" jdbcType="VARCHAR"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+            <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,NAME,
+        AREA_COVERD,SPECIAL_SERVICE,PROJECT_NAME,
+        CONTACTS,PHONE,ADDRESS_PRO,
+        ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS,
+        ONLINE_ADDRESS,INTRUDUCE,STATUS,
+        REASON,ORG_CODE,TYPE,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_tec_ser_org
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_industrial_develop_tec_ser_org
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
+        insert into tb_industrial_develop_tec_ser_org
+        ( itemID,itemCode,NAME
+        ,AREA_COVERD,SPECIAL_SERVICE,PROJECT_NAME
+        ,CONTACTS,PHONE,ADDRESS_PRO
+        ,ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS
+        ,ONLINE_ADDRESS,INTRUDUCE,STATUS
+        ,REASON,ORG_CODE,TYPE
+        ,CREATER,itemCreateAt,UPDATER
+        ,itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{name,jdbcType=VARCHAR}
+        ,#{areaCoverd,jdbcType=VARCHAR},#{specialService,jdbcType=VARCHAR},#{projectName,jdbcType=VARCHAR}
+        ,#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{addressPro,jdbcType=VARCHAR}
+        ,#{addressCity,jdbcType=VARCHAR},#{addressCountry,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR}
+        ,#{onlineAddress,jdbcType=VARCHAR},#{intruduce,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{reason,jdbcType=VARCHAR},#{orgCode,jdbcType=CHAR},#{type,jdbcType=VARCHAR}
+        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
+        ,#{itemupdateat,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
+        insert into tb_industrial_develop_tec_ser_org
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="name != null">NAME,</if>
+                <if test="areaCoverd != null">AREA_COVERD,</if>
+                <if test="specialService != null">SPECIAL_SERVICE,</if>
+                <if test="projectName != null">PROJECT_NAME,</if>
+                <if test="contacts != null">CONTACTS,</if>
+                <if test="phone != null">PHONE,</if>
+                <if test="addressPro != null">ADDRESS_PRO,</if>
+                <if test="addressCity != null">ADDRESS_CITY,</if>
+                <if test="addressCountry != null">ADDRESS_COUNTRY,</if>
+                <if test="address != null">ADDRESS,</if>
+                <if test="onlineAddress != null">ONLINE_ADDRESS,</if>
+                <if test="intruduce != null">INTRUDUCE,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="reason != null">REASON,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="type != null">TYPE,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="name != null"> #{name,jdbcType=VARCHAR},</if>
+                <if test="areaCoverd != null"> #{areaCoverd,jdbcType=VARCHAR},</if>
+                <if test="specialService != null"> #{specialService,jdbcType=VARCHAR},</if>
+                <if test="projectName != null"> #{projectName,jdbcType=VARCHAR},</if>
+                <if test="contacts != null"> #{contacts,jdbcType=VARCHAR},</if>
+                <if test="phone != null"> #{phone,jdbcType=VARCHAR},</if>
+                <if test="addressPro != null"> #{addressPro,jdbcType=VARCHAR},</if>
+                <if test="addressCity != null"> #{addressCity,jdbcType=VARCHAR},</if>
+                <if test="addressCountry != null"> #{addressCountry,jdbcType=VARCHAR},</if>
+                <if test="address != null"> #{address,jdbcType=VARCHAR},</if>
+                <if test="onlineAddress != null"> #{onlineAddress,jdbcType=VARCHAR},</if>
+                <if test="intruduce != null"> #{intruduce,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="reason != null"> #{reason,jdbcType=VARCHAR},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=CHAR},</if>
+                <if test="type != null"> #{type,jdbcType=VARCHAR},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
+        update tb_industrial_develop_tec_ser_org
+        <set>
+                <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="areaCoverd != null">
+                    AREA_COVERD = #{areaCoverd,jdbcType=VARCHAR},
+                </if>
+                <if test="specialService != null">
+                    SPECIAL_SERVICE = #{specialService,jdbcType=VARCHAR},
+                </if>
+                <if test="projectName != null">
+                    PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+                </if>
+                <if test="contacts != null">
+                    CONTACTS = #{contacts,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    PHONE = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="addressPro != null">
+                    ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+                </if>
+                <if test="addressCity != null">
+                    ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+                </if>
+                <if test="addressCountry != null">
+                    ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+                </if>
+                <if test="address != null">
+                    ADDRESS = #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="onlineAddress != null">
+                    ONLINE_ADDRESS = #{onlineAddress,jdbcType=VARCHAR},
+                </if>
+                <if test="intruduce != null">
+                    INTRUDUCE = #{intruduce,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="reason != null">
+                    REASON = #{reason,jdbcType=VARCHAR},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=CHAR},
+                </if>
+                <if test="type != null">
+                    TYPE = #{type,jdbcType=VARCHAR},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
+        update tb_industrial_develop_tec_ser_org
+        set 
+            NAME =  #{name,jdbcType=VARCHAR},
+            AREA_COVERD =  #{areaCoverd,jdbcType=VARCHAR},
+            SPECIAL_SERVICE =  #{specialService,jdbcType=VARCHAR},
+            PROJECT_NAME =  #{projectName,jdbcType=VARCHAR},
+            CONTACTS =  #{contacts,jdbcType=VARCHAR},
+            PHONE =  #{phone,jdbcType=VARCHAR},
+            ADDRESS_PRO =  #{addressPro,jdbcType=VARCHAR},
+            ADDRESS_CITY =  #{addressCity,jdbcType=VARCHAR},
+            ADDRESS_COUNTRY =  #{addressCountry,jdbcType=VARCHAR},
+            ADDRESS =  #{address,jdbcType=VARCHAR},
+            ONLINE_ADDRESS =  #{onlineAddress,jdbcType=VARCHAR},
+            INTRUDUCE =  #{intruduce,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            REASON =  #{reason,jdbcType=VARCHAR},
+            ORG_CODE =  #{orgCode,jdbcType=CHAR},
+            TYPE =  #{type,jdbcType=VARCHAR},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>

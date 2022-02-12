@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.zyy.mapper.IndustrialDevelopTalRecMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.zyy.domain.IndustrialDevelopTalRec">
+            <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+            <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+            <result property="recruitmentTitle" column="RECRUITMENT_TITLE" jdbcType="VARCHAR"/>
+            <result property="recruitmentPosition" column="RECRUITMENT_POSITION" jdbcType="VARCHAR"/>
+            <result property="recruitmentCount" column="RECRUITMENT_COUNT" jdbcType="VARCHAR"/>
+            <result property="salary" column="SALARY" jdbcType="VARCHAR"/>
+            <result property="workplace" column="WORKPLACE" jdbcType="VARCHAR"/>
+            <result property="education" column="EDUCATION" jdbcType="VARCHAR"/>
+            <result property="emali" column="EMALI" jdbcType="VARCHAR"/>
+            <result property="postDuty" column="POST_DUTY" jdbcType="VARCHAR"/>
+            <result property="postDescr" column="POST_DESCR" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+            <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+            <result property="visitNum" column="VISIT_NUM" jdbcType="INTEGER"/>
+            <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+            <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+            <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+            <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,RECRUITMENT_TITLE,
+        RECRUITMENT_POSITION,RECRUITMENT_COUNT,SALARY,
+        WORKPLACE,EDUCATION,EMALI,
+        POST_DUTY,POST_DESCR,STATUS,
+        ORG_CODE,VISIT_NUM,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_tal_rec
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_industrial_develop_tal_rec
+        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTalRec" useGeneratedKeys="true">
+        insert into tb_industrial_develop_tal_rec
+        ( itemID,itemCode,RECRUITMENT_TITLE
+        ,RECRUITMENT_POSITION,RECRUITMENT_COUNT,SALARY
+        ,WORKPLACE,EDUCATION,EMALI
+        ,POST_DUTY,POST_DESCR,STATUS
+        ,ORG_CODE,VISIT_NUM,CREATER
+        ,itemCreateAt,UPDATER,itemUpdateAt
+        )
+        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{recruitmentTitle,jdbcType=VARCHAR}
+        ,#{recruitmentPosition,jdbcType=VARCHAR},#{recruitmentCount,jdbcType=VARCHAR},#{salary,jdbcType=VARCHAR}
+        ,#{workplace,jdbcType=VARCHAR},#{education,jdbcType=VARCHAR},#{emali,jdbcType=VARCHAR}
+        ,#{postDuty,jdbcType=VARCHAR},#{postDescr,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{orgCode,jdbcType=CHAR},#{visitNum,jdbcType=INTEGER},#{creater,jdbcType=VARCHAR}
+        ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTalRec" useGeneratedKeys="true">
+        insert into tb_industrial_develop_tal_rec
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="itemid != null">itemID,</if>
+                <if test="itemcode != null">itemCode,</if>
+                <if test="recruitmentTitle != null">RECRUITMENT_TITLE,</if>
+                <if test="recruitmentPosition != null">RECRUITMENT_POSITION,</if>
+                <if test="recruitmentCount != null">RECRUITMENT_COUNT,</if>
+                <if test="salary != null">SALARY,</if>
+                <if test="workplace != null">WORKPLACE,</if>
+                <if test="education != null">EDUCATION,</if>
+                <if test="emali != null">EMALI,</if>
+                <if test="postDuty != null">POST_DUTY,</if>
+                <if test="postDescr != null">POST_DESCR,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="orgCode != null">ORG_CODE,</if>
+                <if test="visitNum != null">VISIT_NUM,</if>
+                <if test="creater != null">CREATER,</if>
+                <if test="itemcreateat != null">itemCreateAt,</if>
+                <if test="updater != null">UPDATER,</if>
+                <if test="itemupdateat != null">itemUpdateAt,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="itemid != null"> #{itemid,jdbcType=INTEGER},</if>
+                <if test="itemcode != null"> #{itemcode,jdbcType=CHAR},</if>
+                <if test="recruitmentTitle != null"> #{recruitmentTitle,jdbcType=VARCHAR},</if>
+                <if test="recruitmentPosition != null"> #{recruitmentPosition,jdbcType=VARCHAR},</if>
+                <if test="recruitmentCount != null"> #{recruitmentCount,jdbcType=VARCHAR},</if>
+                <if test="salary != null"> #{salary,jdbcType=VARCHAR},</if>
+                <if test="workplace != null"> #{workplace,jdbcType=VARCHAR},</if>
+                <if test="education != null"> #{education,jdbcType=VARCHAR},</if>
+                <if test="emali != null"> #{emali,jdbcType=VARCHAR},</if>
+                <if test="postDuty != null"> #{postDuty,jdbcType=VARCHAR},</if>
+                <if test="postDescr != null"> #{postDescr,jdbcType=VARCHAR},</if>
+                <if test="status != null"> #{status,jdbcType=VARCHAR},</if>
+                <if test="orgCode != null"> #{orgCode,jdbcType=CHAR},</if>
+                <if test="visitNum != null"> #{visitNum,jdbcType=INTEGER},</if>
+                <if test="creater != null"> #{creater,jdbcType=VARCHAR},</if>
+                <if test="itemcreateat != null"> #{itemcreateat,jdbcType=TIMESTAMP},</if>
+                <if test="updater != null"> #{updater,jdbcType=VARCHAR},</if>
+                <if test="itemupdateat != null"> #{itemupdateat,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTalRec">
+        update tb_industrial_develop_tal_rec
+        <set>
+                <if test="recruitmentTitle != null">
+                    RECRUITMENT_TITLE = #{recruitmentTitle,jdbcType=VARCHAR},
+                </if>
+                <if test="recruitmentPosition != null">
+                    RECRUITMENT_POSITION = #{recruitmentPosition,jdbcType=VARCHAR},
+                </if>
+                <if test="recruitmentCount != null">
+                    RECRUITMENT_COUNT = #{recruitmentCount,jdbcType=VARCHAR},
+                </if>
+                <if test="salary != null">
+                    SALARY = #{salary,jdbcType=VARCHAR},
+                </if>
+                <if test="workplace != null">
+                    WORKPLACE = #{workplace,jdbcType=VARCHAR},
+                </if>
+                <if test="education != null">
+                    EDUCATION = #{education,jdbcType=VARCHAR},
+                </if>
+                <if test="emali != null">
+                    EMALI = #{emali,jdbcType=VARCHAR},
+                </if>
+                <if test="postDuty != null">
+                    POST_DUTY = #{postDuty,jdbcType=VARCHAR},
+                </if>
+                <if test="postDescr != null">
+                    POST_DESCR = #{postDescr,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="orgCode != null">
+                    ORG_CODE = #{orgCode,jdbcType=CHAR},
+                </if>
+                <if test="visitNum != null">
+                    VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+                </if>
+                <if test="creater != null">
+                    CREATER = #{creater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemcreateat != null">
+                    itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updater != null">
+                    UPDATER = #{updater,jdbcType=VARCHAR},
+                </if>
+                <if test="itemupdateat != null">
+                    itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTalRec">
+        update tb_industrial_develop_tal_rec
+        set 
+            RECRUITMENT_TITLE =  #{recruitmentTitle,jdbcType=VARCHAR},
+            RECRUITMENT_POSITION =  #{recruitmentPosition,jdbcType=VARCHAR},
+            RECRUITMENT_COUNT =  #{recruitmentCount,jdbcType=VARCHAR},
+            SALARY =  #{salary,jdbcType=VARCHAR},
+            WORKPLACE =  #{workplace,jdbcType=VARCHAR},
+            EDUCATION =  #{education,jdbcType=VARCHAR},
+            EMALI =  #{emali,jdbcType=VARCHAR},
+            POST_DUTY =  #{postDuty,jdbcType=VARCHAR},
+            POST_DESCR =  #{postDescr,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=VARCHAR},
+            ORG_CODE =  #{orgCode,jdbcType=CHAR},
+            VISIT_NUM =  #{visitNum,jdbcType=INTEGER},
+            CREATER =  #{creater,jdbcType=VARCHAR},
+            itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
+            UPDATER =  #{updater,jdbcType=VARCHAR},
+            itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+    </update>
+</mapper>
