@@ -1,7 +1,7 @@
 #application.yml
 spring:
   application:
-    name: zyysys
+    name: zyy
     #模板配置
   thymeleaf:
     cache: false
@@ -20,9 +20,9 @@ spring:
   # 缩进两格，配置jdbc数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.78.186.4:3306/zyydbtest?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/zyy?serverTimezone=UTC
     username: root
-    password: Eleven_rocks11
+    password: 123456
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 2
@@ -70,6 +70,6 @@ logging:
 #server:
 #配置内置tomcat端口和上下文根
 server:
-  port: 9001
+  port: 8080
   servlet:
-    context-path: /zyysys
+    context-path: /zyys
