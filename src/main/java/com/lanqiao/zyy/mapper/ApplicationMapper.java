@@ -1,7 +1,7 @@
 package com.lanqiao.zyy.mapper;
 
 
-import com.lanqiao.zyy.domain.domain.Application;
+import com.lanqiao.zyy.domain.Application;
 
 /**
  * @Entity com.lanqiao.zyy.domain.Application;
