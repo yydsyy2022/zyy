@@ -70,6 +70,6 @@ logging:
 #server:
 #配置内置tomcat端口和上下文根
 server:
-  port: 9001
+  port: 8080
   servlet:
-    context-path: /zyysys
+    context-path: /zyy
