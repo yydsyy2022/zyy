@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.CulproFamPre;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.CulproFamPre
+ * @Entity com.lanqiao.zyy.domain.CulproFamPre
  */
 public interface CulproFamPreMapper {
 

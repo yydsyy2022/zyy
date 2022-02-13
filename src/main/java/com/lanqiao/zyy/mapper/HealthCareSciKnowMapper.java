@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.HealthCareSciKnow;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.HealthCareSciKnow
+ * @Entity com.lanqiao.zyy.domain.HealthCareSciKnow
  */
 public interface HealthCareSciKnowMapper {
 

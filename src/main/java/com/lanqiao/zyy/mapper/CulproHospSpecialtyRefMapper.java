@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.CulproHospSpecialtyRef;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.CulproHospSpecialtyRef
+ * @Entity com.lanqiao.zyy.domain.CulproHospSpecialtyRef
  */
 public interface CulproHospSpecialtyRefMapper {
 

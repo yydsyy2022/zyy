@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Dict;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Dict
+ * @Entity com.lanqiao.zyy.domain.Dict
  */
 public interface DictMapper {
 

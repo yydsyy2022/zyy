@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Resource;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Resource
+ * @Entity com.lanqiao.zyy.domain.Resource
  */
 public interface ResourceMapper {
 

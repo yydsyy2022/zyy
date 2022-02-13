@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Dictitem;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Dictitem
+ * @Entity com.lanqiao.zyy.domain.Dictitem
  */
 public interface DictitemMapper {
 

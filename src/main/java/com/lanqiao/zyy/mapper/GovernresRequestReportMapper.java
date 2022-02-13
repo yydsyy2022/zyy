@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.GovernresRequestReport;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.GovernresRequestReport
+ * @Entity com.lanqiao.zyy.domain.GovernresRequestReport
  */
 public interface GovernresRequestReportMapper {
 

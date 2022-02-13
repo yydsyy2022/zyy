@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.User;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.User
+ * @Entity com.lanqiao.zyy.domain.User
  */
 public interface UserMapper {
 

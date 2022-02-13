@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.GovernresAdviceCopy;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.GovernresAdviceCopy
+ * @Entity com.lanqiao.zyy.domain.GovernresAdviceCopy
  */
 public interface GovernresAdviceCopyMapper {
 

@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Organization;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Organization
+ * @Entity com.lanqiao.zyy.domain.Organization
  */
 public interface OrganizationMapper {
 

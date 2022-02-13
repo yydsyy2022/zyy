@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Log;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Log
+ * @Entity com.lanqiao.zyy.domain.Log
  */
 public interface LogMapper {
 

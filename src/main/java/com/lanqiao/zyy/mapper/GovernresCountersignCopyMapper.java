@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.GovernresCountersignCopy;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.GovernresCountersignCopy
+ * @Entity com.lanqiao.zyy.domain.GovernresCountersignCopy
  */
 public interface GovernresCountersignCopyMapper {
 

@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.Role;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.Role
+ * @Entity com.lanqiao.zyy.domain.Role
  */
 public interface RoleMapper {
 

@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.UserRoleRef;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.UserRoleRef
+ * @Entity com.lanqiao.zyy.domain.UserRoleRef
  */
 public interface UserRoleRefMapper {
 

@@ -1,10 +1,12 @@
 package com.lanqiao.zyy.mapper;
 
 import com.lanqiao.zyy.domain.IndustrialDevelopOff;
+import org.springframework.stereotype.Repository;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.IndustrialDevelopOff
+ * @Entity com.lanqiao.zyy.domain.IndustrialDevelopOff
  */
+@Repository
 public interface IndustrialDevelopOffMapper {
 
     int deleteByPrimaryKey(Long id);

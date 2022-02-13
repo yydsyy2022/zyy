@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.CulproHosp;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.CulproHosp
+ * @Entity com.lanqiao.zyy.domain.CulproHosp
  */
 public interface CulproHospMapper {
 

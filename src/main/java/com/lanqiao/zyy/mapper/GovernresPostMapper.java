@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.GovernresPost;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.GovernresPost
+ * @Entity com.lanqiao.zyy.domain.GovernresPost
  */
 public interface GovernresPostMapper {
 

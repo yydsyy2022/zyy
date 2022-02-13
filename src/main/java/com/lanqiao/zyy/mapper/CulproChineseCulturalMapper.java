@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.CulproChineseCultural;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.CulproChineseCultural
+ * @Entity com.lanqiao.zyy.domain.CulproChineseCultural
  */
 public interface CulproChineseCulturalMapper {
 

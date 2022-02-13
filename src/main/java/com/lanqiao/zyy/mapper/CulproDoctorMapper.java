@@ -3,7 +3,7 @@ package com.lanqiao.zyy.mapper;
 import com.lanqiao.zyy.domain.CulproDoctor;
 
 /**
- * @Entity org.lanqiao.zyysys.domain.CulproDoctor
+ * @Entity com.lanqiao.zyy.domain.CulproDoctor
  */
 public interface CulproDoctorMapper {
 
