@@ -41,12 +41,23 @@
         select
         <include refid="Base_Column_List" />
         from tb_culpro_hosp
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{itemid,jdbcType=INTEGER}
     </select>
-
+    <select id="selectBySelective" parameterType="com.lanqiao.zyy.domain.CulproHosp" resultMap="BaseResultMap">
+        select
+        itemID,itemCode,HOSPITAL_NAME,
+        HOSPITAL_LEVEL,HOSPITAL_BRIEF_INTRODUCE,HOSPITAL_KEY_SPECIALTY,
+        HOSPITAL_INTRODUCE,HOSPITAL_TELEPHONE,HOSPITAL_ADDRESS_PRO,
+        HOSPITAL_ADDRESS_CITY,HOSPITAL_ADDRESS_COUNTRY,HOSPITAL_ADDRESS,
+        HOSPITAL_LINK,REASON,HOSPITAL_STATUS,
+        CREATER,itemCreateAt,UPDATER,
+        itemUpdateAt,ORG_CODE
+        from tb_culpro_hosp
+        where  itemID = #{itemid,jdbcType=INTEGER}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_culpro_hosp
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{itemid,jdbcType=INTEGER}
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.CulproHosp" useGeneratedKeys="true">
         insert into tb_culpro_hosp
@@ -170,7 +181,7 @@
                     ORG_CODE = #{orgCode,jdbcType=VARCHAR},
                 </if>
         </set>
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{itemid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.CulproHosp">
         update tb_culpro_hosp
@@ -193,6 +204,6 @@
             UPDATER =  #{updater,jdbcType=VARCHAR},
             itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP},
             ORG_CODE =  #{orgCode,jdbcType=VARCHAR}
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{itemid,jdbcType=INTEGER}
     </update>
 </mapper>
