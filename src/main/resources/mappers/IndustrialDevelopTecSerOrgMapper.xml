@@ -30,47 +30,101 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        itemID,itemCode,NAME,
-        AREA_COVERD,SPECIAL_SERVICE,PROJECT_NAME,
-        CONTACTS,PHONE,ADDRESS_PRO,
-        ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS,
-        ONLINE_ADDRESS,INTRUDUCE,STATUS,
-        REASON,ORG_CODE,TYPE,
-        CREATER,itemCreateAt,UPDATER,
+        itemID,
+        itemCode,
+        NAME,
+        AREA_COVERD,
+        SPECIAL_SERVICE,
+        PROJECT_NAME,
+        CONTACTS,
+        PHONE,
+        ADDRESS_PRO,
+        ADDRESS_CITY,
+        ADDRESS_COUNTRY,
+        ADDRESS,
+        ONLINE_ADDRESS,
+        INTRUDUCE,
+        STATUS,
+        REASON,
+        ORG_CODE,
+        TYPE,
+        CREATER,
+        itemCreateAt,
+        UPDATER,
         itemUpdateAt
     </sql>
+
+    <select id="selectBySelective" resultMap="BaseResultMap" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_industrial_develop_tec_ser_org
+        <where>
+            <if test="tecSerOgr.name!=null and tecSerOgr.name.trim().length()>0">
+                <bind name="pattern" value="'%'+tecSerOgr.name+'%'"/>
+                AND NAME like #{pattern}
+            </if>
+        </where>
+    </select>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_tec_ser_org
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_industrial_develop_tec_ser_org
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
         insert into tb_industrial_develop_tec_ser_org
-        ( itemID,itemCode,NAME
-        ,AREA_COVERD,SPECIAL_SERVICE,PROJECT_NAME
-        ,CONTACTS,PHONE,ADDRESS_PRO
-        ,ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS
-        ,ONLINE_ADDRESS,INTRUDUCE,STATUS
-        ,REASON,ORG_CODE,TYPE
-        ,CREATER,itemCreateAt,UPDATER
-        ,itemUpdateAt)
-        values (#{itemid,jdbcType=INTEGER},#{itemcode,jdbcType=CHAR},#{name,jdbcType=VARCHAR}
-        ,#{areaCoverd,jdbcType=VARCHAR},#{specialService,jdbcType=VARCHAR},#{projectName,jdbcType=VARCHAR}
-        ,#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{addressPro,jdbcType=VARCHAR}
-        ,#{addressCity,jdbcType=VARCHAR},#{addressCountry,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR}
-        ,#{onlineAddress,jdbcType=VARCHAR},#{intruduce,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
-        ,#{reason,jdbcType=VARCHAR},#{orgCode,jdbcType=CHAR},#{type,jdbcType=VARCHAR}
-        ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
-        ,#{itemupdateat,jdbcType=TIMESTAMP})
+        ( itemID,
+          itemCode,
+          NAME,
+          AREA_COVERD,
+          SPECIAL_SERVICE,
+          PROJECT_NAME,
+          CONTACTS,
+          PHONE,
+          ADDRESS_PRO,
+          ADDRESS_CITY,
+          ADDRESS_COUNTRY,
+          ADDRESS,
+          ONLINE_ADDRESS,
+          INTRUDUCE,
+          STATUS,
+          REASON,
+          ORG_CODE,
+          TYPE,
+          CREATER,
+          itemCreateAt,
+          UPDATER,
+          itemUpdateAt)
+        values (#{itemid,jdbcType=INTEGER},
+                #{itemcode,jdbcType=CHAR},
+                #{name,jdbcType=VARCHAR},
+                #{areaCoverd,jdbcType=VARCHAR},
+                #{specialService,jdbcType=VARCHAR},
+                #{projectName,jdbcType=VARCHAR},
+                #{contacts,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR},
+                #{addressPro,jdbcType=VARCHAR},
+                #{addressCity,jdbcType=VARCHAR},
+                #{addressCountry,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR},
+                #{onlineAddress,jdbcType=VARCHAR},
+                #{intruduce,jdbcType=VARCHAR},
+                #{status,jdbcType=VARCHAR},
+                #{reason,jdbcType=VARCHAR},
+                #{orgCode,jdbcType=CHAR},
+                #{type,jdbcType=VARCHAR},
+                #{creater,jdbcType=VARCHAR},
+                #{itemcreateat,jdbcType=TIMESTAMP},
+                #{updater,jdbcType=VARCHAR},
+                #{itemupdateat,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
         insert into tb_industrial_develop_tec_ser_org
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="itemid != null">itemID,</if>
@@ -185,7 +239,7 @@
                     itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
                 </if>
         </set>
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
         update tb_industrial_develop_tec_ser_org
@@ -210,6 +264,6 @@
             itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
             UPDATER =  #{updater,jdbcType=VARCHAR},
             itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
     </update>
 </mapper>

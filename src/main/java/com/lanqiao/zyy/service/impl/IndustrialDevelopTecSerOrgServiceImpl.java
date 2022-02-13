@@ -1,5 +1,6 @@
 package com.lanqiao.zyy.service.impl;
 
+import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg;
 import com.lanqiao.zyy.mapper.IndustrialDevelopTecSerOrgMapper;
 import com.lanqiao.zyy.service.IndustrialDevelopTecSerOrgService;
@@ -33,6 +34,13 @@ public class IndustrialDevelopTecSerOrgServiceImpl implements IndustrialDevelopT
     @Override
     public IndustrialDevelopTecSerOrg selectByPrimaryKey(Long id) {
         return this.industrialDevelopTecSerOrgMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Page<IndustrialDevelopTecSerOrg> selectBySelective(IndustrialDevelopTecSerOrg tecSerOgr, Integer pageNum, Integer pageSize) {
+//        PageHelper.startPage(pageNum,pageSize);
+//        industrialDevelopTecSerOrgMapper.selectBySelective(tecSerOgr);
+        return this.industrialDevelopTecSerOrgMapper.selectBySelective(tecSerOgr,pageNum,pageSize);
     }
 
     @Override
