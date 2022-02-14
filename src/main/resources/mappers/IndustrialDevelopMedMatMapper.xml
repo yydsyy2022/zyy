@@ -29,18 +29,30 @@
         UPDATER,itemUpdateAt
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectBySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_med_mat
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        <where>
+            <if test="medMat.name!=null and medMat.name.trim().length()>0">
+                <bind name="pattern" value="'%'++'medMat.name'%"/>
+                AND NAME like #{pattern}
+            </if>
+        </where>
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_med_mat
+        where  itemID = #{id} AND itemCode = #{code}
+    </select>
+
+    <delete id="deleteByPrimaryKey" >
         delete from tb_industrial_develop_med_mat
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{id} AND itemCode = #{code}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
         insert into tb_industrial_develop_med_mat
         ( itemID,itemCode,NAME
         ,SPECIFICATIONS,PRICE,PLACE
@@ -53,7 +65,7 @@
         ,#{orgCode,jdbcType=CHAR},#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP}
         ,#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat" useGeneratedKeys="true">
         insert into tb_industrial_develop_med_mat
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="itemid != null">itemID,</if>
@@ -128,7 +140,7 @@
                     itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
                 </if>
         </set>
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopMedMat">
         update tb_industrial_develop_med_mat

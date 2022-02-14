@@ -9,13 +9,13 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface IndustrialDevelopChiMedService  {
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopChiMed record);
 
     int insertSelective(IndustrialDevelopChiMed record);
 
-    IndustrialDevelopChiMed selectByPrimaryKey(Integer id);
+    IndustrialDevelopChiMed selectByPrimaryKey(Integer id,String code);
 
     Page<IndustrialDevelopChiMed> selectBySelective
             (IndustrialDevelopChiMed chiMed,

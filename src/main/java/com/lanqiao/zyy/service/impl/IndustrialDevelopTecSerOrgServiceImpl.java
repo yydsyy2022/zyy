@@ -17,8 +17,8 @@ public class IndustrialDevelopTecSerOrgServiceImpl implements IndustrialDevelopT
     IndustrialDevelopTecSerOrgMapper industrialDevelopTecSerOrgMapper;
     
     @Override
-    public int deleteByPrimaryKey(Long id) {
-        return this.industrialDevelopTecSerOrgMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopTecSerOrgMapper.deleteByPrimaryKey(id,code);
     }
 
     @Override
@@ -32,14 +32,12 @@ public class IndustrialDevelopTecSerOrgServiceImpl implements IndustrialDevelopT
     }
 
     @Override
-    public IndustrialDevelopTecSerOrg selectByPrimaryKey(Long id) {
-        return this.industrialDevelopTecSerOrgMapper.selectByPrimaryKey(id);
+    public IndustrialDevelopTecSerOrg selectByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopTecSerOrgMapper.selectByPrimaryKey(id,code);
     }
 
     @Override
     public Page<IndustrialDevelopTecSerOrg> selectBySelective(IndustrialDevelopTecSerOrg tecSerOgr, Integer pageNum, Integer pageSize) {
-//        PageHelper.startPage(pageNum,pageSize);
-//        industrialDevelopTecSerOrgMapper.selectBySelective(tecSerOgr);
         return this.industrialDevelopTecSerOrgMapper.selectBySelective(tecSerOgr,pageNum,pageSize);
     }
 

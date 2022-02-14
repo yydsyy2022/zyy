@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndustrialDevelopBasestyleMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopBasestyle record);
 

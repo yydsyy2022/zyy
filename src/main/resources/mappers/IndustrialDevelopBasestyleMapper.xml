@@ -47,11 +47,11 @@
         where  itemID = #{id} AND itemCode = #{code}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey">
         delete from tb_industrial_develop_basestyle
         where  itemID = #{id} AND itemCode = #{code}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" useGeneratedKeys="true">
         insert into tb_industrial_develop_basestyle
         ( itemID,itemCode,FILE_CODE
         ,ORG_CODE,STATUS,CREATER
@@ -62,7 +62,7 @@
         ,#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR},#{itemupdateat,jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" useGeneratedKeys="true">
         insert into tb_industrial_develop_basestyle
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="itemid != null">itemID,</if>

@@ -32,8 +32,8 @@ public class IndustrialDevelopChiMedController {
 
     //用于修改时根据id查找返回数据
     @GetMapping("/industryChiMed/query")
-    public String selectByPrimaryKey(Integer id){
-        IndustrialDevelopChiMed chiMed = this.industrialDevelopChiMedService.selectByPrimaryKey(id);
+    public String selectByPrimaryKey(Integer id,String code){
+        IndustrialDevelopChiMed chiMed = this.industrialDevelopChiMedService.selectByPrimaryKey(id,code);
         return "/update";
     }
 
@@ -44,12 +44,12 @@ public class IndustrialDevelopChiMedController {
     }
 
     @GetMapping("/industryChiMed/delete")
-    public String delete(Integer id){
-        this.industrialDevelopChiMedService.deleteByPrimaryKey(id);
+    public String delete(Integer id,String code){
+        this.industrialDevelopChiMedService.deleteByPrimaryKey(id,code);
         return "";
     }
 
-    @PostMapping("/industryBaseStyle/update")
+    @PostMapping("/industryChiMed/update")
     public String update(IndustrialDevelopChiMed chiMed){
         this.industrialDevelopChiMedService.updateByPrimaryKeySelective(chiMed);
         return "";

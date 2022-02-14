@@ -1,5 +1,6 @@
 package com.lanqiao.zyy.service.impl;
 
+import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopMedMat;
 import com.lanqiao.zyy.mapper.IndustrialDevelopMedMatMapper;
 import com.lanqiao.zyy.service.IndustrialDevelopMedMatService;
@@ -17,8 +18,8 @@ public class IndustrialDevelopMedMatServiceImpl implements IndustrialDevelopMedM
     
     
     @Override
-    public int deleteByPrimaryKey(Long id) {
-        return this.industrialDevelopMedMatMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopMedMatMapper.deleteByPrimaryKey(id,code);
     }
 
     @Override
@@ -32,8 +33,13 @@ public class IndustrialDevelopMedMatServiceImpl implements IndustrialDevelopMedM
     }
 
     @Override
-    public IndustrialDevelopMedMat selectByPrimaryKey(Long id) {
-        return this.industrialDevelopMedMatMapper.selectByPrimaryKey(id);
+    public IndustrialDevelopMedMat selectByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopMedMatMapper.selectByPrimaryKey(id,code);
+    }
+
+    @Override
+    public Page<IndustrialDevelopMedMat> selectBySelective(IndustrialDevelopMedMat medMat, Integer pageNum, Integer pageSize) {
+        return null;
     }
 
     @Override

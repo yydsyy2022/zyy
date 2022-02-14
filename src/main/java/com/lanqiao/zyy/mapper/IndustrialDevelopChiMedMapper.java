@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndustrialDevelopChiMedMapper {
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopChiMed record);
 
     int insertSelective(IndustrialDevelopChiMed record);
 
-    IndustrialDevelopChiMed selectByPrimaryKey(Integer id);
+    IndustrialDevelopChiMed selectByPrimaryKey(Integer id,String code);
 
     Page<IndustrialDevelopChiMed> selectBySelective
             (@Param("chiMed") IndustrialDevelopChiMed chiMed,

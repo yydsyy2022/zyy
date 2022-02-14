@@ -17,8 +17,8 @@ public class IndustrialDevelopBasestyleServiceImpl implements IndustrialDevelopB
     IndustrialDevelopBasestyleMapper industrialDevelopBasestyleMapper;
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
-        return this.industrialDevelopBasestyleMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopBasestyleMapper.deleteByPrimaryKey(id,code);
     }
 
     @Override

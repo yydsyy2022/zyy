@@ -11,13 +11,13 @@ import com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg;
  */
 public interface IndustrialDevelopTecSerOrgService  {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopTecSerOrg record);
 
     int insertSelective(IndustrialDevelopTecSerOrg record);
 
-    IndustrialDevelopTecSerOrg selectByPrimaryKey(Long id);
+    IndustrialDevelopTecSerOrg selectByPrimaryKey(Integer id,String code);
 
     Page<IndustrialDevelopTecSerOrg> selectBySelective
             (IndustrialDevelopTecSerOrg tecSerOgr,

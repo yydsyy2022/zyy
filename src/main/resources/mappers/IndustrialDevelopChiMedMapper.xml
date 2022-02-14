@@ -79,9 +79,9 @@
         where  itemID = #{id} AND itemCode = #{code}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey">
         delete from tb_industrial_develop_chi_med
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{id} AND itemCode = #{code}
     </delete>
     <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
         insert into tb_industrial_develop_chi_med
@@ -234,7 +234,7 @@
                     itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
                 </if>
         </set>
-        where   itemID = #{id} AND itemCode = #{code}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed">
         update tb_industrial_develop_chi_med
@@ -262,6 +262,6 @@
             itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
             UPDATER =  #{updater,jdbcType=VARCHAR},
             itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
-        where   itemID = #{id} AND itemCode = #{code}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR}
     </update>
 </mapper>

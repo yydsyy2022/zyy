@@ -17,8 +17,8 @@ public class IndustrialDevelopChiMedServiceImpl implements IndustrialDevelopChiM
     IndustrialDevelopChiMedMapper industrialDevelopChiMedMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return this.industrialDevelopChiMedMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopChiMedMapper.deleteByPrimaryKey(id,code);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class IndustrialDevelopChiMedServiceImpl implements IndustrialDevelopChiM
     }
 
     @Override
-    public IndustrialDevelopChiMed selectByPrimaryKey(Integer id) {
-        return this.industrialDevelopChiMedMapper.selectByPrimaryKey(id);
+    public IndustrialDevelopChiMed selectByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopChiMedMapper.selectByPrimaryKey(id,code);
     }
 
     @Override

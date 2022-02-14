@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 @Controller
 public class IndustrialDevelopBasestyleController {
@@ -38,13 +39,14 @@ public class IndustrialDevelopBasestyleController {
 
     @GetMapping("/industryBaseStyle/insert")
     public String insert(IndustrialDevelopBasestyle baseStyle){
+        baseStyle.setItemcode(UUID.randomUUID().toString());
         this.industrialDevelopBasestyleService.insert(baseStyle);
         return "";
     }
 
     @GetMapping("/industryBaseStyle/delete")
-    public String delete(Long id){
-        this.industrialDevelopBasestyleService.deleteByPrimaryKey(id);
+    public String delete(Integer id,String code){
+        this.industrialDevelopBasestyleService.deleteByPrimaryKey(id,code);
         return "";
     }
 

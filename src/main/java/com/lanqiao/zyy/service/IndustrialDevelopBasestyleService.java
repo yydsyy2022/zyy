@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface IndustrialDevelopBasestyleService  {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopBasestyle record);
 

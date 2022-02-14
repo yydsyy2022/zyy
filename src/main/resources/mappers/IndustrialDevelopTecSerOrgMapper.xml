@@ -66,16 +66,16 @@
         </where>
     </select>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_tec_ser_org
-        where  itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
+        where  itemID = #{id} AND itemCode = #{code}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey">
         delete from tb_industrial_develop_tec_ser_org
-        where  itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
+        where  itemID = #{id} AND itemCode = #{code}
     </delete>
     <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg" useGeneratedKeys="true">
         insert into tb_industrial_develop_tec_ser_org
@@ -239,7 +239,7 @@
                     itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
                 </if>
         </set>
-        where   itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg">
         update tb_industrial_develop_tec_ser_org
@@ -264,6 +264,6 @@
             itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
             UPDATER =  #{updater,jdbcType=VARCHAR},
             itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
-        where   itemID = #{itemid,jdbcType=INTEGER} OR itemCode = #{itemcode,jdbcType=CHAR}
+        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR}
     </update>
 </mapper>

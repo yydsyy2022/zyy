@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndustrialDevelopTecSerOrgMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id,String code);
 
     int insert(IndustrialDevelopTecSerOrg record);
 
     int insertSelective(IndustrialDevelopTecSerOrg record);
 
-    IndustrialDevelopTecSerOrg selectByPrimaryKey(Long id);
+    IndustrialDevelopTecSerOrg selectByPrimaryKey(Integer id,String code);
 
     Page<IndustrialDevelopTecSerOrg> selectBySelective
             (@Param("tecSerOgr") IndustrialDevelopTecSerOrg tecSerOgr,
