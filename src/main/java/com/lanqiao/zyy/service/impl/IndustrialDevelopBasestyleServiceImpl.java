@@ -1,5 +1,6 @@
 package com.lanqiao.zyy.service.impl;
 
+import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopBasestyle;
 import com.lanqiao.zyy.mapper.IndustrialDevelopBasestyleMapper;
 import com.lanqiao.zyy.service.IndustrialDevelopBasestyleService;
@@ -31,8 +32,13 @@ public class IndustrialDevelopBasestyleServiceImpl implements IndustrialDevelopB
     }
 
     @Override
-    public IndustrialDevelopBasestyle selectByPrimaryKey(Long id) {
-        return this.industrialDevelopBasestyleMapper.selectByPrimaryKey(id);
+    public IndustrialDevelopBasestyle selectByPrimaryKey(Integer id,String code) {
+        return this.industrialDevelopBasestyleMapper.selectByPrimaryKey(id,code);
+    }
+
+    @Override
+    public Page<IndustrialDevelopBasestyle> selectBySelective(IndustrialDevelopBasestyle baseStyle, Integer pageNum, Integer pageSize) {
+        return this.industrialDevelopBasestyleMapper.selectBySelective(baseStyle,pageNum,pageSize);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.lanqiao.zyy.mapper;
 
+import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopBasestyle;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,7 +17,12 @@ public interface IndustrialDevelopBasestyleMapper {
 
     int insertSelective(IndustrialDevelopBasestyle record);
 
-    IndustrialDevelopBasestyle selectByPrimaryKey(Long id);
+    IndustrialDevelopBasestyle selectByPrimaryKey(Integer id,String code);
+
+    Page<IndustrialDevelopBasestyle> selectBySelective
+            (@Param("baseStyle") IndustrialDevelopBasestyle baseStyle,
+             @Param("pageNum") Integer pageNum,
+             @Param("pageSize") Integer pageSize);
 
     int updateByPrimaryKeySelective(IndustrialDevelopBasestyle record);
 

@@ -19,9 +19,9 @@ public class IndustrialDevelopTecSerOrgController {
     @Autowired
     IndustrialDevelopTecSerOrgService industrialDevelopTecSerOrgService;
 
-    @GetMapping("/industryTecSerOrg")
+    @GetMapping("/industryTecSerOrg")//根据条件查找
     public String selectAll(IndustrialDevelopTecSerOrg tecSerOrg, Integer pageNum, Model model, HttpSession session){
-        if (pageNum != null) {
+        if (pageNum == null) {
             pageNum=1;
             session.setAttribute("tecSerOgr",tecSerOrg);
         }else {
