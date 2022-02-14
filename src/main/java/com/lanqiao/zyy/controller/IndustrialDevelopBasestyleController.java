@@ -2,14 +2,12 @@ package com.lanqiao.zyy.controller;
 
 import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopBasestyle;
-import com.lanqiao.zyy.domain.IndustrialDevelopTecSerOrg;
 import com.lanqiao.zyy.service.IndustrialDevelopBasestyleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.servlet.http.HttpSession;
 
 @Controller

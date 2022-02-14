@@ -33,29 +33,57 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        itemID,itemCode,NAME,
-        AREA_COVERD,SALES_CATEGORY,PROCESSING_TYPE,
-        PEODUCE_TYPE,PLANT_TYPE,PEODUCE_DRUG,
-        SELLING_DRUGS,CONTACTS,PHONE,
-        ADDRESS_PRO,ADDRESS_CITY,ADDRESS_COUNTRY,
-        ADDRESS,INTRUDUCE,STATUS,
-        REASON,ORG_CODE,TYPE,
-        CREATER,itemCreateAt,UPDATER,
+        itemID,
+        itemCode,
+        NAME,
+        AREA_COVERD,
+        SALES_CATEGORY,
+        PROCESSING_TYPE,
+        PEODUCE_TYPE,
+        PLANT_TYPE,
+        PEODUCE_DRUG,
+        SELLING_DRUGS,
+        CONTACTS,
+        PHONE,
+        ADDRESS_PRO,
+        ADDRESS_CITY,
+        ADDRESS_COUNTRY,
+        ADDRESS,
+        INTRUDUCE,
+        STATUS,
+        REASON,
+        ORG_CODE,
+        TYPE,
+        CREATER,
+        itemCreateAt,
+        UPDATER,
         itemUpdateAt
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectBySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed"  resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_chi_med
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        <where>
+            <if test="chiMed.name!=null and chiMed.name.trim().length()>0">
+                <bind name="pattern" value="'%'+chiMed.name+'%'"/>
+                AND NAME like #{pattern}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_industrial_develop_chi_med
+        where  itemID = #{id} AND itemCode = #{code}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_industrial_develop_chi_med
         where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
         insert into tb_industrial_develop_chi_med
         ( itemID,itemCode,NAME
         ,AREA_COVERD,SALES_CATEGORY,PROCESSING_TYPE
@@ -76,7 +104,7 @@
         ,#{creater,jdbcType=VARCHAR},#{itemcreateat,jdbcType=TIMESTAMP},#{updater,jdbcType=VARCHAR}
         ,#{itemupdateat,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="itemid" keyProperty="itemid" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed" useGeneratedKeys="true">
         insert into tb_industrial_develop_chi_med
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="itemid != null">itemID,</if>
@@ -206,7 +234,7 @@
                     itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
                 </if>
         </set>
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{id} AND itemCode = #{code}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopChiMed">
         update tb_industrial_develop_chi_med
@@ -234,6 +262,6 @@
             itemCreateAt =  #{itemcreateat,jdbcType=TIMESTAMP},
             UPDATER =  #{updater,jdbcType=VARCHAR},
             itemUpdateAt =  #{itemupdateat,jdbcType=TIMESTAMP}
-        where   itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where   itemID = #{id} AND itemCode = #{code}
     </update>
 </mapper>

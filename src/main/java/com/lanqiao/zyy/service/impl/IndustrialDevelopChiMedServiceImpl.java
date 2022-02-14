@@ -1,5 +1,6 @@
 package com.lanqiao.zyy.service.impl;
 
+import com.github.pagehelper.Page;
 import com.lanqiao.zyy.domain.IndustrialDevelopChiMed;
 import com.lanqiao.zyy.mapper.IndustrialDevelopChiMedMapper;
 import com.lanqiao.zyy.service.IndustrialDevelopChiMedService;
@@ -16,7 +17,7 @@ public class IndustrialDevelopChiMedServiceImpl implements IndustrialDevelopChiM
     IndustrialDevelopChiMedMapper industrialDevelopChiMedMapper;
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
+    public int deleteByPrimaryKey(Integer id) {
         return this.industrialDevelopChiMedMapper.deleteByPrimaryKey(id);
     }
 
@@ -30,8 +31,14 @@ public class IndustrialDevelopChiMedServiceImpl implements IndustrialDevelopChiM
         return this.industrialDevelopChiMedMapper.insertSelective(record);
     }
 
+
     @Override
-    public IndustrialDevelopChiMed selectByPrimaryKey(Long id) {
+    public Page<IndustrialDevelopChiMed> selectBySelective(IndustrialDevelopChiMed chiMed, Integer pageNum, Integer pageSize) {
+        return this.industrialDevelopChiMedMapper.selectBySelective(chiMed,pageNum,pageSize);
+    }
+
+    @Override
+    public IndustrialDevelopChiMed selectByPrimaryKey(Integer id) {
         return this.industrialDevelopChiMedMapper.selectByPrimaryKey(id);
     }
 

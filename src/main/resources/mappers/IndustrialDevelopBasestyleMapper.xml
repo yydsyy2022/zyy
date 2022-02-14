@@ -28,7 +28,7 @@
         itemUpdateAt
     </sql>
 
-    <select id="selectBySelective" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectBySelective" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_basestyle
@@ -40,7 +40,7 @@
         </where>
     </select>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tb_industrial_develop_basestyle
@@ -49,7 +49,7 @@
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_industrial_develop_basestyle
-        where  itemID = #{itemid,jdbcType=INTEGER} AND itemCode = #{itemcode,jdbcType=CHAR} 
+        where  itemID = #{id} AND itemCode = #{code}
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lanqiao.zyy.domain.IndustrialDevelopBasestyle" useGeneratedKeys="true">
         insert into tb_industrial_develop_basestyle
